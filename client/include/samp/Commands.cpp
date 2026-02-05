@@ -73,36 +73,4 @@ void SAMP::Commands::Setup() {
 	((void(__cdecl*)())SAMP_ADDROF(0x689A0))();
 }
 
-#elif defined(SAMP_DL)
-
-SAMP::CMDPROC SAMP::Commands::Default() { return SAMP::CMDPROC(SAMP_ADDROF(0x67F50)); }
-SAMP::CMDPROC SAMP::Commands::TestDeathWindow() { return SAMP::CMDPROC(SAMP_ADDROF(0x67F70)); }
-SAMP::CMDPROC SAMP::Commands::ToggleCameraTargetLabels() { return SAMP::CMDPROC(SAMP_ADDROF(0x68050)); }
-SAMP::CMDPROC SAMP::Commands::SetChatPageSize() { return SAMP::CMDPROC(SAMP_ADDROF(0x68060)); }
-SAMP::CMDPROC SAMP::Commands::SetChatFontSize() { return SAMP::CMDPROC(SAMP_ADDROF(0x680E0)); }
-SAMP::CMDPROC SAMP::Commands::DrawNameTagStatus() { return SAMP::CMDPROC(SAMP_ADDROF(0x68190)); }
-SAMP::CMDPROC SAMP::Commands::DrawChatTimestamps() { return SAMP::CMDPROC(SAMP_ADDROF(0x681A0)); }
-SAMP::CMDPROC SAMP::Commands::ToggleAudioStreamMessages() { return SAMP::CMDPROC(SAMP_ADDROF(0x68200)); }
-SAMP::CMDPROC SAMP::Commands::ToggleURLMessages() { return SAMP::CMDPROC(SAMP_ADDROF(0x68270)); }
-SAMP::CMDPROC SAMP::Commands::PrintMemory() { return SAMP::CMDPROC(SAMP_ADDROF(0x682F0)); }
-SAMP::CMDPROC SAMP::Commands::SetFrameLimiter() { return SAMP::CMDPROC(SAMP_ADDROF(0x68310)); }
-SAMP::CMDPROC SAMP::Commands::ToggleHeadMoves() { return SAMP::CMDPROC(SAMP_ADDROF(0x683A0)); }
-SAMP::CMDPROC SAMP::Commands::Quit() { return SAMP::CMDPROC(SAMP_ADDROF(0x68420)); }
-SAMP::CMDPROC SAMP::Commands::CmpStat() { return SAMP::CMDPROC(SAMP_ADDROF(0x68430)); }
-SAMP::CMDPROC SAMP::Commands::SavePosition() { return SAMP::CMDPROC(SAMP_ADDROF(0x68440)); }
-SAMP::CMDPROC SAMP::Commands::SavePositionOnly() { return SAMP::CMDPROC(SAMP_ADDROF(0x685C0)); }
-SAMP::CMDPROC SAMP::Commands::PrintCurrentInterior() { return SAMP::CMDPROC(SAMP_ADDROF(0x68A10)); }
-SAMP::CMDPROC SAMP::Commands::ToggleObjectsLight() { return SAMP::CMDPROC(SAMP_ADDROF(0x68A40)); }
-SAMP::CMDPROC SAMP::Commands::ToggleDebugLabels() { return SAMP::CMDPROC(SAMP_ADDROF(0x68A60)); }
-SAMP::CMDPROC SAMP::Commands::SendRconCommand() { return SAMP::CMDPROC(SAMP_ADDROF(0x68A70)); }
-SAMP::CMDPROC SAMP::Commands::Debug::SetPlayerSkin() { return SAMP::CMDPROC(SAMP_ADDROF(0x68740)); }
-SAMP::CMDPROC SAMP::Commands::Debug::CreateVehicle() { return SAMP::CMDPROC(SAMP_ADDROF(0x687B0)); }
-SAMP::CMDPROC SAMP::Commands::Debug::EnableVehicleSelection() { return SAMP::CMDPROC(SAMP_ADDROF(0x688F0)); }
-SAMP::CMDPROC SAMP::Commands::Debug::SetWorldWeather() { return SAMP::CMDPROC(SAMP_ADDROF(0x68910)); }
-SAMP::CMDPROC SAMP::Commands::Debug::SetWorldTime() { return SAMP::CMDPROC(SAMP_ADDROF(0x68960)); }
-
-void SAMP::Commands::Setup() {
-	((void(__cdecl*)())SAMP_ADDROF(0x68B50))();
-}
-
 #endif

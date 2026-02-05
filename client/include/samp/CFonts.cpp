@@ -97,48 +97,4 @@ void SAMP::CFonts::Reset() {
 	((void(__thiscall*)(CFonts*))SAMP_ADDROF(0x6B170))(this);
 }
 
-#elif defined(SAMP_DL)
-
-SAMP::CFonts*& SAMP::pFontRenderer() { return *(SAMP::CFonts**)SAMP_ADDROF(0x2ACA2C); }
-
-SAMP::CFonts::CFonts(IDirect3DDevice9* pDevice) {
-	((void(__thiscall*)(CFonts*, IDirect3DDevice9*))SAMP_ADDROF(0x6B530))(this, pDevice);
-}
-
-SAMP::CFonts::~CFonts() {
-	((void(__thiscall*)(CFonts*))SAMP_ADDROF(0x6AB40))(this);
-}
-
-void SAMP::CFonts::OnLostDevice() {
-	((void(__thiscall*)(CFonts*))SAMP_ADDROF(0x6ABC0))(this);
-}
-
-void SAMP::CFonts::OnResetDevice() {
-	((void(__thiscall*)(CFonts*))SAMP_ADDROF(0x6AC00))(this);
-}
-
-void SAMP::CFonts::GetTextScreenSize(void* pSize, const char* szText, int nFormat) {
-	((void(__thiscall*)(CFonts*, void*, const char*, int))SAMP_ADDROF(0x6AC40))(this, pSize, szText, nFormat);
-}
-
-void SAMP::CFonts::GetLittleTextScreenSize(void* pSize, const char* szText, int nFormat) {
-	((void(__thiscall*)(CFonts*, void*, const char*, int))SAMP_ADDROF(0x6ACF0))(this, pSize, szText, nFormat);
-}
-
-void SAMP::CFonts::DrawText(ID3DXSprite* pSprite, const char* szText, CRectSA rect, D3DCOLOR color, BOOL bShadow) {
-	((void(__thiscall*)(CFonts*, ID3DXSprite*, const char*, CRectSA, D3DCOLOR, BOOL))SAMP_ADDROF(0x6ADA0))(this, pSprite, szText, rect, color, bShadow);
-}
-
-void SAMP::CFonts::DrawLittleText(ID3DXSprite* pSprite, const char* szText, CRectSA rect, int nFormat, D3DCOLOR color, BOOL bShadow) {
-	((void(__thiscall*)(CFonts*, ID3DXSprite*, const char*, CRectSA, int, D3DCOLOR, BOOL))SAMP_ADDROF(0x6AF20))(this, pSprite, szText, rect, nFormat, color, bShadow);
-}
-
-void SAMP::CFonts::DrawLicensePlateText(const char* szText, CRectSA rect, D3DCOLOR color) {
-	((void(__thiscall*)(CFonts*, const char*, CRectSA, D3DCOLOR))SAMP_ADDROF(0x6B090))(this, szText, rect, color);
-}
-
-void SAMP::CFonts::Reset() {
-	((void(__thiscall*)(CFonts*))SAMP_ADDROF(0x6B320))(this);
-}
-
 #endif

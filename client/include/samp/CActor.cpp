@@ -97,34 +97,4 @@ void SAMP::CActor::SetInvulnerable(bool bEnable) {
 	((void(__thiscall*)(CActor*, bool))SAMP_ADDROF(0x9BFF0))(this, bEnable);
 }
 
-#elif defined(SAMP_DL)
-
-SAMP::CActor::CActor(int nModel, CVectorSA position, float fRotation) {
-	((void(__thiscall*)(CActor*, int, CVectorSA, float))SAMP_ADDROF(0x9BD30))(this, nModel, position, fRotation);
-}
-
-void SAMP::CActor::Destroy() {
-	((void(__thiscall*)(CActor*))SAMP_ADDROF(0x9BE80))(this);
-}
-
-void SAMP::CActor::PerformAnimation(const char* szAnim, const char* szIFP, float fFramedelta, int bLockA, int bLockX, int bLockY, int bLockF, int nTime) {
-	((void(__thiscall*)(CActor*, const char*, const char*, float, int, int, int, int, int))SAMP_ADDROF(0x9BEE0))(this, szAnim, szIFP, fFramedelta, bLockA, bLockX, bLockY, bLockF, nTime);
-}
-
-void SAMP::CActor::SetRotation(float fAngle) {
-	((void(__thiscall*)(CActor*, float))SAMP_ADDROF(0x9BFF0))(this, fAngle);
-}
-
-float SAMP::CActor::GetHealth() {
-	return ((float(__thiscall*)(CActor*))SAMP_ADDROF(0x9C030))(this);
-}
-
-void SAMP::CActor::SetHealth(float fValue) {
-	((void(__thiscall*)(CActor*, float))SAMP_ADDROF(0x9C050))(this, fValue);
-}
-
-void SAMP::CActor::SetInvulnerable(bool bEnable) {
-	((void(__thiscall*)(CActor*, bool))SAMP_ADDROF(0x9C180))(this, bEnable);
-}
-
 #endif

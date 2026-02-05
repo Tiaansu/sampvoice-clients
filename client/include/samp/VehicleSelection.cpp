@@ -41,20 +41,4 @@ void SAMP::VehicleSelection::Process() {
 	((void(__cdecl*)())SAMP_ADDROF(0x99AD0))();
 }
 
-#elif defined(SAMP_DL)
-
-SAMP::CCameraSA*& SAMP::VehicleSelection::pCamera() { return *(SAMP::CCameraSA**)SAMP_ADDROF(0x13BA7C); }
-SAMP::CVehicleSA*& SAMP::VehicleSelection::pVehicle() { return *(SAMP::CVehicleSA**)SAMP_ADDROF(0x13BB64); }
-CPad*& SAMP::VehicleSelection::pControls() { return *(CPad**)SAMP_ADDROF(0x13BA78); }
-BOOL& SAMP::VehicleSelection::bInitialized() { return *(BOOL*)SAMP_ADDROF(0x13BB60); }
-int& SAMP::VehicleSelection::nSelectedModel() { return *(int*)SAMP_ADDROF(0x1014B4); }
-
-void SAMP::VehicleSelection::ResetVehicle() {
-	((void(__cdecl*)())SAMP_ADDROF(0x99710))();
-}
-
-void SAMP::VehicleSelection::Process() {
-	((void(__cdecl*)())SAMP_ADDROF(0x99AD0))();
-}
-
 #endif

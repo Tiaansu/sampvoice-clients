@@ -53,26 +53,4 @@ void SAMP::DebugScript::CreateVehicle(const char* szParams) {
 	((void(__cdecl*)(const char*))SAMP_ADDROF(0x9DF00))(szParams);
 }
 
-#elif defined(SAMP_DL)
-
-SAMP::CObjectPool*& SAMP::DebugScript::pPrivateObjectPool() { return *(SAMP::CObjectPool**)SAMP_ADDROF(0x18DE44); }
-unsigned short& SAMP::DebugScript::nObjectCount() { return *(unsigned short*)SAMP_ADDROF(0x18DE48); }
-SAMP::CVectorSA& SAMP::DebugScript::vNewCameraPos() { return *(SAMP::CVectorSA*)SAMP_ADDROF(0x18DE38); }
-
-void SAMP::DebugScript::Initialize(const char* szFile) {
-	((void(__cdecl*)(const char*))SAMP_ADDROF(szFile))(szFile);
-}
-
-void SAMP::DebugScript::ProcessLine(const char* szLine) {
-	((void(__cdecl*)(const char*))SAMP_ADDROF(0x9E6E0))(szLine);
-}
-
-char* SAMP::DebugScript::GetCommandParams(char* szLine) {
-	return ((char* (__cdecl*)(char*))SAMP_ADDROF(0x9E2F0))(szLine);
-}
-
-void SAMP::DebugScript::CreateVehicle(const char* szParams) {
-	((void(__cdecl*)(const char*))SAMP_ADDROF(0x9E450))(szParams);
-}
-
 #endif

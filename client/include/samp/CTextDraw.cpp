@@ -45,22 +45,4 @@ void SAMP::CTextDraw::Draw() {
 	((void(__thiscall*)(CTextDraw*))SAMP_ADDROF(0xB2BF0))(this);
 }
 
-#elif defined(SAMP_DL)
-
-SAMP::CTextDraw::CTextDraw(Transmit* pData, const char* szText) {
-	((void(__thiscall*)(CTextDraw*, Transmit*, const char*))SAMP_ADDROF(0xB32E0))(this, pData, szText);
-}
-
-SAMP::CTextDraw::~CTextDraw() {
-	((void(__thiscall*)(CTextDraw*))SAMP_ADDROF(0xB2B50))(this);
-}
-
-void SAMP::CTextDraw::SetText(const char* szText) {
-	((void(__thiscall*)(CTextDraw*, const char*))SAMP_ADDROF(0xB2B60))(this, szText);
-}
-
-void SAMP::CTextDraw::Draw() {
-	((void(__thiscall*)(CTextDraw*))SAMP_ADDROF(0xB3080))(this);
-}
-
 #endif

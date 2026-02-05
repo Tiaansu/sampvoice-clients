@@ -57,27 +57,4 @@ namespace VehicleSelection {
 
 SAMP_END
 
-#elif defined(SAMP_DL)
-
-#include "CVehicleSA.h"
-#include "CCameraSA.h"
-#include "KeyStuff.h"
-
-SAMP_BEGIN
-
-namespace VehicleSelection {
-
-	CCameraSA*& pCamera();
-	CVehicleSA*& pVehicle();
-	CPad*& pControls();
-	BOOL& bInitialized();
-	int& nSelectedModel();
-
-	void ResetVehicle();
-	void Process();
-
-}
-
-SAMP_END
-
 #endif

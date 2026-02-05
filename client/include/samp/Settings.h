@@ -65,31 +65,4 @@ Settings& settings();
 
 SAMP_END
 
-#elif defined(SAMP_DL)
-
-#define SETTINGS_STRING_LEN 256
-
-SAMP_BEGIN
-
-struct SAMP_API Settings {
-
-	BOOL m_bDebugMode; // -d
-	BOOL m_bOnlineGame; // -c
-	BOOL m_bWindowedMode; // unused
-	char m_szPass[SETTINGS_STRING_LEN + 1]; // -z
-	char m_szHost[SETTINGS_STRING_LEN + 1]; // -h
-	char m_szPort[SETTINGS_STRING_LEN + 1]; // -p
-	char m_szNick[SETTINGS_STRING_LEN + 1]; // -n
-	char m_szDebugScript[SETTINGS_STRING_LEN + 1]; // -l
-
-	static void Initialize();
-	static void GetFromCommandLine(const char* szLine, char* szBuffer);
-	static void GetFromQuotes(const char* szLine, char* szBuffer);
-
-};
-
-Settings& settings();
-
-SAMP_END
-
 #endif

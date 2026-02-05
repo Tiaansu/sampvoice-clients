@@ -73,35 +73,4 @@ namespace KeyStuff {
 
 SAMP_END
 
-#elif defined(SAMP_DL)
-
-class CPad;
-
-SAMP_BEGIN
-
-namespace KeyStuff {
-
-	CPad*	pLocalPlayerKeys();
-	CPad*	aPlayerKeys();
-	CPad*&	pInternalKeys();
-	bool*&	pDriveByLeft();
-	bool*&	pDriveByRight();
-	bool&	bSavedDriveByLeft();
-	bool&	bSavedDriveByRight();
-
-	void Initialize();
-	void UpdateKeys();
-	void ApplyKeys();
-	void SetKeys(int nPlayer, const CPad* pKeys);
-	void ApplyKeys(int nPlayer);
-	CPad* GetInternalKeys();
-	CPad* GetKeys();
-	CPad* GetKeys(int nPlayer);
-	void ResetKeys(int nPlayer);
-	void ResetInternalKeys();
-
-}
-
-SAMP_END
-
 #endif

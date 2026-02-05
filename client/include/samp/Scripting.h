@@ -81,39 +81,4 @@ namespace Scripting {
 
 SAMP_END_NP
 
-#elif defined(SAMP_DL)
-
-class CRunningScript;
-
-SAMP_BEGIN_NP
-
-namespace Scripting {
-
-	struct SAMP_API OpcodeInfo {
-
-		unsigned short	m_wOpCode;
-		char			m_szParams[16]; // i - int, f - float, v - var, s - string, z - zero terminating
-
-	};
-
-	typedef int(__thiscall* PROCESSOR)(CRunningScript*);
-
-	CRunningScript*&	pThread();
-	unsigned char*		aBuffer(); // [256]
-	unsigned long&		nLastUsedOpcode();
-	unsigned long*&		apThreadLocals(); // [18]
-	BOOL&				bLocalDebug();
-	PROCESSOR&			ProcessOneCommand();
-
-	void Initialize();
-	int ExecBuffer();
-	template<typename... Args>
-	int ProcessCommand(const OpcodeInfo* pOpcodeInfo, Args... args) {
-		return ((int(__cdecl*)(const OpcodeInfo*, Args...))SAMP_ADDROF(0xB1F10))(pOpcodeInfo, args...);
-	}
-
-}
-
-SAMP_END_NP
-
 #endif

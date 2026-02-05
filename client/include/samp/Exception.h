@@ -55,26 +55,4 @@ namespace Exception {
 
 SAMP_END
 
-#elif defined(SAMP_DL)
-
-#define MAX_EXCEPTIONS 9
-
-SAMP_BEGIN
-
-namespace Exception {
-
-	int& nCount();
-	void*& pContextRecord(); // PCONTEXT
-	char* szCrashDialogText(); // [16384]
-
-	BOOL Print(int nCode, void* pExceptionPointers, const char* szWarning);
-	void SendCrashReport();
-	BOOL CrashDialogProc(void* hWnd, unsigned int uMsg, unsigned int wParam, long lParam);
-	void ConstructCrashDialogText(BOOL bModules);
-	long Handler(void* pExceptionPointers);
-
-}
-
-SAMP_END
-
 #endif

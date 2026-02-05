@@ -61,30 +61,4 @@ long SAMP::Exception::Handler(void* pExceptionPointers) {
 	return ((long(__stdcall*)(void*))SAMP_ADDROF(0x60230))(pExceptionPointers);
 }
 
-#elif defined(SAMP_DL)
-
-int& SAMP::Exception::nCount() { return *(int*)SAMP_ADDROF(0x163A70); }
-void*& SAMP::Exception::pContextRecord() { return *(void**)SAMP_ADDROF(0x15FA68); }
-char* SAMP::Exception::szCrashDialogText() { return (char*)SAMP_ADDROF(0x15FA70); }
-
-BOOL SAMP::Exception::Print(int nCode, void* pExceptionPointers, const char* szWarning) {
-	return ((BOOL(__stdcall*)(int, void*, const char*))SAMP_ADDROF(0x60470))(nCode, pExceptionPointers, szWarning);
-}
-
-void SAMP::Exception::SendCrashReport() {
-	((void(__cdecl*)())SAMP_ADDROF(0x60260))();
-}
-
-BOOL SAMP::Exception::CrashDialogProc(void* hWnd, unsigned int uMsg, unsigned int wParam, long lParam) {
-	return ((BOOL(__stdcall*)(void*, unsigned int, unsigned int, long))SAMP_ADDROF(0x60330))(hWnd, uMsg, wParam, lParam);
-}
-
-void SAMP::Exception::ConstructCrashDialogText(BOOL bModules) {
-	((void(__cdecl*)(BOOL))SAMP_ADDROF(0x60070))(bModules);
-}
-
-long SAMP::Exception::Handler(void* pExceptionPointers) {
-	return ((long(__stdcall*)(void*))SAMP_ADDROF(0x60430))(pExceptionPointers);
-}
-
 #endif

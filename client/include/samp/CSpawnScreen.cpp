@@ -65,32 +65,4 @@ void SAMP::CSpawnScreen::Draw() {
 	((void(__thiscall*)(CSpawnScreen*))SAMP_ADDROF(0x708A0))(this);
 }
 
-#elif defined(SAMP_DL)
-
-SAMP::CSpawnScreen*& SAMP::pSpawnScreen() { return *(SAMP::CSpawnScreen**)SAMP_ADDROF(0x2ACA20); }
-
-SAMP::CSpawnScreen::CSpawnScreen(IDirect3DDevice9* pDevice) {
-	((void(__thiscall*)(CSpawnScreen*, IDirect3DDevice9*))SAMP_ADDROF(0x70990))(this, pDevice);
-}
-
-SAMP::CSpawnScreen::~CSpawnScreen() {
-	((void(__thiscall*)(CSpawnScreen*))SAMP_ADDROF(0x709D0))(this);
-}
-
-void SAMP::CSpawnScreen::SetText(const char* szString) {
-	((void(__thiscall*)(CSpawnScreen*, const char*))SAMP_ADDROF(0x70630))(this, szString);
-}
-
-void SAMP::CSpawnScreen::OnResetDevice() {
-	((void(__thiscall*)(CSpawnScreen*))SAMP_ADDROF(0x70690))(this);
-}
-
-void SAMP::CSpawnScreen::OnLostDevice() {
-	((void(__thiscall*)(CSpawnScreen*))SAMP_ADDROF(0x70940))(this);
-}
-
-void SAMP::CSpawnScreen::Draw() {
-	((void(__thiscall*)(CSpawnScreen*))SAMP_ADDROF(0x70A30))(this);
-}
-
 #endif

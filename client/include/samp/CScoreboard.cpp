@@ -93,40 +93,8 @@ void SAMP::CScoreboard::Enable() {
 
 SAMP::CScoreboard*& SAMP::pScoreboard() { return *(SAMP::CScoreboard**)SAMP_ADDROF(0x2AC9DC); }
 
-SAMP::CScoreboard::CScoreboard(IDirect3DDevice9* pDevice) {
-	((void(__thiscall*)(CScoreboard*, IDirect3DDevice9*))SAMP_ADDROF(0x6E460))(this, pDevice);
-}
-
-void SAMP::CScoreboard::Recalc() {
-	((void(__thiscall*)(CScoreboard*))SAMP_ADDROF(0x6E360))(this);
-}
-
-void SAMP::CScoreboard::GetRect(CRectSA* pRect) {
-	((void(__thiscall*)(CScoreboard*, CRectSA*))SAMP_ADDROF(0x6E3C0))(this, pRect);
-}
-
 void SAMP::CScoreboard::Close(bool bHideCursor) {
 	((void(__thiscall*)(CScoreboard*, bool))SAMP_ADDROF(0x6E410))(this, bHideCursor);
-}
-
-void SAMP::CScoreboard::ResetDialogControls(CDXUTDialog* pDialog) {
-	((void(__thiscall*)(CScoreboard*, CDXUTDialog*))SAMP_ADDROF(0x6E4E0))(this, pDialog);
-}
-
-void SAMP::CScoreboard::SendNotification() {
-	((void(__thiscall*)(CScoreboard*))SAMP_ADDROF(0x6E640))(this);
-}
-
-void SAMP::CScoreboard::UpdateList() {
-	((void(__thiscall*)(CScoreboard*))SAMP_ADDROF(0x6E760))(this);
-}
-
-void SAMP::CScoreboard::Draw() {
-	((void(__thiscall*)(CScoreboard*))SAMP_ADDROF(0x6EAF0))(this);
-}
-
-void SAMP::CScoreboard::Enable() {
-	((void(__thiscall*)(CScoreboard*))SAMP_ADDROF(0x6EE10))(this);
 }
 
 #endif

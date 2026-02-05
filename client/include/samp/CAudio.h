@@ -72,41 +72,4 @@ public:
 
 SAMP_END
 
-#elif defined(SAMP_DL)
-
-#include "CVectorSA.h"
-
-#define SOUND_OFF 0
-#define SOUND_DISABLE_OUTDOOR_AMBIENCE_TRACK 1
-
-SAMP_BEGIN
-
-class SAMP_API CAudio {
-public:
-
-	BOOL m_bSoundLoaded;
-	bool m_bOutdoorAmbienceTrackDisabled;
-
-	CAudio() {
-		m_bSoundLoaded = false;
-		m_bOutdoorAmbienceTrackDisabled = false;
-	}
-
-	~CAudio() {
-		Play(SOUND_OFF);
-	}
-
-	int GetRadioStation();
-	void StartRadio(int nStation);
-	void StopRadio();
-	float GetRadioVolume();
-	void StopOutdoorAmbienceTrack();
-	void SetOutdoorAmbienceTrack(int nSound);
-	void Play(int nSound, CVectorSA location = {});
-	bool IsOutdoorAmbienceTrackDisabled();
-
-};
-
-SAMP_END
-
 #endif

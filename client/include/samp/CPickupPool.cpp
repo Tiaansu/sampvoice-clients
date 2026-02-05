@@ -85,42 +85,4 @@ void SAMP::CPickupPool::Process() {
 	((void(__thiscall*)(CPickupPool*))SAMP_ADDROF(0x131D0))(this);
 }
 
-#elif defined(SAMP_DL)
-
-SAMP::CPickupPool::CPickupPool() {
-	((void(__thiscall*)(CPickupPool*))SAMP_ADDROF(0x8190))(this);
-}
-
-SAMP::CPickupPool::~CPickupPool() {
-	((void(__thiscall*)(CPickupPool*))SAMP_ADDROF(0x13310))(this);
-}
-
-void SAMP::CPickupPool::Create(Pickup* pData, ID nId) {
-	((void(__thiscall*)(CPickupPool*, Pickup*, ID))SAMP_ADDROF(0x13170))(this, pData, nId);
-}
-
-void SAMP::CPickupPool::CreateWeapon(int nModel, CVectorSA position, int nAmmo, ID nExOwner) {
-	((void(__thiscall*)(CPickupPool*, int, CVectorSA, int, ID))SAMP_ADDROF(0x13080))(this, nModel, position, nAmmo, nExOwner);
-}
-
-void SAMP::CPickupPool::Delete(int nId) {
-	((void(__thiscall*)(CPickupPool*, int))SAMP_ADDROF(0x13220))(this, nId);
-}
-
-void SAMP::CPickupPool::DeleteWeapon(ID nExOwner) {
-	((void(__thiscall*)(CPickupPool*, ID))SAMP_ADDROF(0x13280))(this, nExOwner);
-}
-
-int SAMP::CPickupPool::GetIndex(int nId) {
-	return ((int(__thiscall*)(CPickupPool*, int))SAMP_ADDROF(0x132E0))(this, nId);
-}
-
-void SAMP::CPickupPool::SendNotification(int nId) {
-	((void(__thiscall*)(CPickupPool*, int))SAMP_ADDROF(0x13340))(this, nId);
-}
-
-void SAMP::CPickupPool::Process() {
-	((void(__thiscall*)(CPickupPool*))SAMP_ADDROF(0x13420))(this);
-}
-
 #endif

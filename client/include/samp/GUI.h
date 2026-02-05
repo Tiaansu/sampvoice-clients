@@ -77,37 +77,4 @@ namespace GUI {
 
 SAMP_END
 
-#elif defined(SAMP_DL)
-
-class CDXUTControl;
-class CDXUTDialogResourceManager;
-
-SAMP_BEGIN
-
-namespace GUI {
-
-	CDXUTDialogResourceManager*&	pResourceMgr();
-
-	CDXUTDialog*&					pGameUi();
-	CDXUTDialog*&					pScoreboard();
-	CDXUTDialog*&					pDialog();
-	CDXUTDialog*&					pClassSelection();
-
-	IDirect3DSurface9*&				pCursor();
-	IDirect3DDevice9*&				pDevice();
-
-	void Initialize();
-
-	void OnLostDevice();
-	void OnResetDevice();
-
-	void GameUIEventHandler(unsigned int nEvent, int nControlId, CDXUTControl* pControl, void* pUserContext);
-	void ScoreboardEventHandler(unsigned int nEvent, int nControlId, CDXUTControl* pControl, void* pUserContext);
-	void DialogEventHandler(unsigned int nEvent, int nControlId, CDXUTControl* pControl, void* pUserContext);
-	void ClassSelectionEventHandler(unsigned int nEvent, int nControlId, CDXUTControl* pControl, void* pUserContext);
-
-}
-
-SAMP_END
-
 #endif

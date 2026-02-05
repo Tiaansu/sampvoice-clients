@@ -33,28 +33,4 @@ IDirect3DTexture9* SAMP::CObjectMaterialText::Create(const char* szText, const c
 	return ((IDirect3DTexture9 * (__thiscall*)(CObjectMaterialText*, const char*, const char*, char, int, int, D3DCOLOR, D3DCOLOR, bool, char))SAMP_ADDROF(0x701C0))(this, szText, szFont, nFontSize, nBgSizeX, nBgSizeY, fontColor, bgColor, bBold, align);
 }
 
-#elif defined(SAMP_DL)
-
-SAMP::CObjectMaterialText*& SAMP::pObjectMaterialTextManager() { return *(SAMP::CObjectMaterialText**)SAMP_ADDROF(0x2ACA34); }
-
-SAMP::CObjectMaterialText::CObjectMaterialText(IDirect3DDevice9* pDevice) {
-	((void(__thiscall*)(CObjectMaterialText*, IDirect3DDevice9*))SAMP_ADDROF(0x70320))(this, pDevice);
-}
-
-SAMP::CObjectMaterialText::~CObjectMaterialText() {
-	((void(__thiscall*)(CObjectMaterialText*))SAMP_ADDROF(0x70340))(this);
-}
-
-void SAMP::CObjectMaterialText::OnLostDevice() {
-	((void(__thiscall*)(CObjectMaterialText*))SAMP_ADDROF(0x702D0))(this);
-}
-
-void SAMP::CObjectMaterialText::OnResetDevice() {
-	((void(__thiscall*)(CObjectMaterialText*))SAMP_ADDROF(0x70300))(this);
-}
-
-IDirect3DTexture9* SAMP::CObjectMaterialText::Create(const char* szText, const char* szFont, char nFontSize, int nBgSizeX, int nBgSizeY, D3DCOLOR fontColor, D3DCOLOR bgColor, bool bBold, char align) {
-	return ((IDirect3DTexture9 * (__thiscall*)(CObjectMaterialText*, const char*, const char*, char, int, int, D3DCOLOR, D3DCOLOR, bool, char))SAMP_ADDROF(0x70350))(this, szText, szFont, nFontSize, nBgSizeX, nBgSizeY, fontColor, bgColor, bBold, align);
-}
-
 #endif

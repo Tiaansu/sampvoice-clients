@@ -57,28 +57,4 @@ IDirect3DTexture9* SAMP::CLicensePlate::Create(const char* szText) {
 	return ((IDirect3DTexture9 * (__thiscall*)(CLicensePlate*, const char*))SAMP_ADDROF(0x6D110))(this, szText);
 }
 
-#elif defined(SAMP_DL)
-
-SAMP::CLicensePlate*& SAMP::pLicensePlateManager() { return *(SAMP::CLicensePlate**)SAMP_ADDROF(0x2ACA30); }
-
-SAMP::CLicensePlate::CLicensePlate(IDirect3DDevice9* pDevice) {
-	((void(__thiscall*)(CLicensePlate*, IDirect3DDevice9*))SAMP_ADDROF(0x6D3F0))(this, pDevice);
-}
-
-SAMP::CLicensePlate::~CLicensePlate() {
-	((void(__thiscall*)(CLicensePlate*))SAMP_ADDROF(0x6D420))(this);
-}
-
-void SAMP::CLicensePlate::OnLostDevice() {
-	((void(__thiscall*)(CLicensePlate*))SAMP_ADDROF(0x6D1F0))(this);
-}
-
-void SAMP::CLicensePlate::OnResetDevice() {
-	((void(__thiscall*)(CLicensePlate*))SAMP_ADDROF(0x6D240))(this);
-}
-
-IDirect3DTexture9* SAMP::CLicensePlate::Create(const char* szText) {
-	return ((IDirect3DTexture9 * (__thiscall*)(CLicensePlate*, const char*))SAMP_ADDROF(0x6D2C0))(this, szText);
-}
-
 #endif

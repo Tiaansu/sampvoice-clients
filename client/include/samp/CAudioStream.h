@@ -93,45 +93,4 @@ CAudioStream*& pAudioStream();
 
 SAMP_END
 
-#elif defined(SAMP_DL)
-
-#include "CVectorSA.h"
-
-#define AUDIOSTREAM_MAX_STRING 256
-#define AUDIOSTREAM_USERAGENT "SA-MP/0.3"
-
-SAMP_BEGIN
-
-class SAMP_API CAudioStream {
-public:
-
-	bool m_bInitialized;
-
-	static int& hStream();
-	static bool& bIsPlaying();
-	static CVectorSA& position();
-	static bool& bIs3d();
-	static char* szIcyUrl();
-	static char* szInfo();
-	static char* szUrl();
-	static bool& bNeedsToDestroy();
-	static float& fRadius();
-	static char* szIcyName();
-
-	static void ConstructInfo();
-	static void SyncProc(int handle, int channel, int data, void* user);
-	static void Process(void* arglist);
-
-	BOOL Reset();
-	BOOL Stop(bool bWait);
-	BOOL Play(const char* szUrl, CVectorSA position, float fRadius, bool bIs3d);
-	void ControlGameRadio();
-	void DrawInfo();
-
-};
-
-CAudioStream*& pAudioStream();
-
-SAMP_END
-
 #endif

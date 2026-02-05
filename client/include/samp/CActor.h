@@ -90,43 +90,4 @@ public:
 
 SAMP_END
 
-#elif defined(SAMP_DL)
-
-#include "CEntitySA.h"
-
-class CPed;
-
-SAMP_BEGIN
-
-class SAMP_API CActor : public CEntitySA {
-public:
-    // void **lpVtbl = 0xD9EC8;
-    ::CPed* m_pGamePed;
-    GTAREF  m_marker;
-    GTAREF  m_arrow;
-    bool    m_bNeedsToCreateMarker;
-    bool    m_bInvulnerable;
-
-	CActor() { *(void**)this = (void*)SAMP_ADDROF(0xD9EC8); }
-    CActor(int nSkin, CVectorSA vPos, float fRotation);
-    virtual ~CActor() SAMP_VIRTUAL;
-
-    void  Destroy();
-    void  PerformAnimation(const char* szAnim, const char* szIFP, float fFramedelta, int bLockA, int bLockX, int bLockY, int bLockF, int nTime);
-    void  SetRotation(float fValue);
-    void  SetHealth(float fValue);
-    float GetHealth();
-    void  SetInvulnerable(bool bInv);
-    void  SetArmour(float fValue);
-    float GetArmour();
-    // state/status is a flags
-    void SetState(int nValue);
-    int  GetState();
-    BOOL IsDead();
-    void SetStatus(int nValue);
-    int  GetStatus();
-};
-
-SAMP_END
-
 #endif

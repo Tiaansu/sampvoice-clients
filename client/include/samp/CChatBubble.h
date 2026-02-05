@@ -41,34 +41,4 @@ CChatBubble*& pChatBubble();
 
 SAMP_END
 
-#elif defined(SAMP_DL)
-
-SAMP_BEGIN
-
-class SAMP_API CChatBubble {
-public:
-
-	struct SAMP_API Player {
-
-		BOOL		m_bExists;
-		char		m_szText[256];
-		int			m_creationTick;
-		int			m_lifeSpan;
-		D3DCOLOR	m_color;
-		float		m_fDrawDistance;
-		int			m_nMaxLineLength;
-
-	}				m_player[1004];
-
-	CChatBubble();
-
-	void Add(ID nPlayer, const char* szText, D3DCOLOR color, float fDrawDistance, int lifeSpan);
-	void Draw();
-
-};
-
-CChatBubble*& pChatBubble();
-
-SAMP_END
-
 #endif

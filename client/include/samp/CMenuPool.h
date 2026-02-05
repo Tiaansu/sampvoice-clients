@@ -71,34 +71,4 @@ public:
 
 SAMP_END
 
-#elif defined(SAMP_DL)
-
-#include "CMenu.h"
-
-#define MAX_MENUS 128
-
-SAMP_BEGIN
-
-class SAMP_API CMenuPool {
-public:
-
-	CMenu*	m_pObject[MAX_MENUS];
-	BOOL	m_bNotEmpty[MAX_MENUS];
-	NUMBER	m_nCurrent;
-	bool	m_bCanceled;
-
-	CMenuPool();
-	~CMenuPool();
-
-	CMenu* Create(NUMBER nId, const char* szTitle, float fX, float fY, char nColumns, float fFirstColumnWidth, float fSecondColumnWidth, const CMenu::Interaction* pInteraction);
-	BOOL Delete(NUMBER nId);
-	void Show(NUMBER nId);
-	void Hide(NUMBER nId);
-	char* GetTextPointer(const char* szName);
-	void Process();
-
-};
-
-SAMP_END
-
 #endif

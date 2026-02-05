@@ -217,100 +217,47 @@ SAMP::CObjectSA* SAMP::CPlayerPool::FindAccessory(::CObject* pGameObject) {
 
 #elif defined(SAMP_DL)
 
-SAMP::CPlayerPool::CPlayerPool() {
-	((void(__thiscall*)(CPlayerPool*))SAMP_ADDROF(0x13E80))(this);
-}
+const char* SAMP::CPlayerPool::GetName(ID nId) {
+	if (nId < 0 || nId > MAX_PLAYERS)
+		return nullptr;
 
-SAMP::CPlayerPool::~CPlayerPool() {
-	((void(__thiscall*)(CPlayerPool*))SAMP_ADDROF(0x13FD0))(this);
-}
+	if (nId == this->m_nLocalId)
+		return this->m_szLocalName.c_str();
 
-void SAMP::CPlayerPool::UpdateLargestId() {
-	((void(__thiscall*)(CPlayerPool*))SAMP_ADDROF(0x13650))(this);
-}
+	if (this->m_pObject[nId] == nullptr)
+		return nullptr;
 
-void SAMP::CPlayerPool::Process() {
-	((void(__thiscall*)(CPlayerPool*))SAMP_ADDROF(0x136C0))(this);
-}
-
-SAMP::ID SAMP::CPlayerPool::Find(::CPed* pGamePed) {
-	return ((ID(__thiscall*)(CPlayerPool*, ::CPed*))SAMP_ADDROF(0x137C0))(this, pGamePed);
-}
-
-void SAMP::CPlayerPool::Deactivate() {
-	((void(__thiscall*)(CPlayerPool*))SAMP_ADDROF(0x139F0))(this);
-}
-
-void SAMP::CPlayerPool::ForceCollision() {
-	((void(__thiscall*)(CPlayerPool*))SAMP_ADDROF(0x13B50))(this);
-}
-
-void SAMP::CPlayerPool::RestoreCollision() {
-	((void(__thiscall*)(CPlayerPool*))SAMP_ADDROF(0x13BD0))(this);
-}
-
-BOOL SAMP::CPlayerPool::Delete(ID nId, int nReason) {
-	return ((BOOL(__thiscall*)(CPlayerPool*, ID, int))SAMP_ADDROF(0x13F40))(this, nId, nReason);
-}
-
-BOOL SAMP::CPlayerPool::Create(ID nId, const char* szName, BOOL bIsNPC) {
-	return ((BOOL(__thiscall*)(CPlayerPool*, ID, const char*, BOOL))SAMP_ADDROF(0x14100))(this, nId, szName, bIsNPC);
+	return this->m_pObject[nId]->m_szNick.c_str();
 }
 
 SAMP::CRemotePlayer* SAMP::CPlayerPool::GetPlayer(ID nId) {
-	return ((CRemotePlayer * (__thiscall*)(CPlayerPool*, ID))SAMP_ADDROF(0x10F0))(this, nId);
-}
+	if (nId < 0 || nId > MAX_PLAYERS)
+		return nullptr;
 
-const char* SAMP::CPlayerPool::GetLocalPlayerName() {
-	return ((const char* (__thiscall*)(CPlayerPool*))SAMP_ADDROF(0xA1D0))(this);
-}
+	if (nId == this->m_nLocalId)
+		return nullptr;
 
-BOOL SAMP::CPlayerPool::IsDisconnected(ID nId) {
-	return ((BOOL(__thiscall*)(CPlayerPool*, ID))SAMP_ADDROF(0x10D0))(this, nId);
+	if (this->m_pObject[nId] == nullptr)
+		return nullptr;
+
+	if (this->m_pObject[nId]->m_pPlayer == nullptr)
+		return nullptr;
+
+	return this->m_pObject[nId]->m_pPlayer;
 }
 
 BOOL SAMP::CPlayerPool::IsConnected(ID nId) {
-	return ((BOOL(__thiscall*)(CPlayerPool*, ID))SAMP_ADDROF(0x10B0))(this, nId);
-}
+	if (nId < 0 || nId > MAX_PLAYERS)
+		return false;
 
-void SAMP::CPlayerPool::SetLocalPlayerName(const char* szName) {
-	((void(__thiscall*)(CPlayerPool*, const char*))SAMP_ADDROF(0xB580))(this, szName);
-}
+	if (nId == this->m_nLocalId)
+		return true;
 
-void SAMP::CPlayerPool::SetAt(ID nId, CPlayerInfo* pObject) {
-	((void(__thiscall*)(CPlayerPool*, ID, CPlayerInfo*))SAMP_ADDROF(0x13630))(this, nId, pObject);
-}
-
-int SAMP::CPlayerPool::GetScore(ID nId) {
-	return ((int(__thiscall*)(CPlayerPool*, ID))SAMP_ADDROF(0x6E290))(this, nId);
-}
-
-int SAMP::CPlayerPool::GetPing(ID nId) {
-	return ((int(__thiscall*)(CPlayerPool*, ID))SAMP_ADDROF(0x6E2B0))(this, nId);
-}
-
-const char* SAMP::CPlayerPool::GetName(ID nId) {
-	return ((const char* (__thiscall*)(CPlayerPool*, ID))SAMP_ADDROF(0x170D0))(this, nId);
-}
-
-int SAMP::CPlayerPool::GetLocalPlayerPing() {
-	return ((int(__thiscall*)(CPlayerPool*))SAMP_ADDROF(0x6E2F0))(this);
-}
-
-int SAMP::CPlayerPool::GetLocalPlayerScore() {
-	return ((int(__thiscall*)(CPlayerPool*))SAMP_ADDROF(0x6E2E0))(this);
-}
-
-int SAMP::CPlayerPool::GetCount(BOOL bIncludeNPC) {
-	return ((int(__thiscall*)(CPlayerPool*, BOOL))SAMP_ADDROF(0x138C0))(this, bIncludeNPC);
+	return this->m_bNotEmpty[nId];
 }
 
 SAMP::CLocalPlayer* SAMP::CPlayerPool::GetLocalPlayer() {
-	return ((CLocalPlayer * (__thiscall*)(CPlayerPool*))SAMP_ADDROF(0x1A80))(this);
-}
-
-SAMP::CObjectSA* SAMP::CPlayerPool::FindAccessory(::CObject* pGameObject) {
-	return ((CObjectSA * (__thiscall*)(CPlayerPool*, ::CObject*))SAMP_ADDROF(0x13A40))(this, pGameObject);
+	return this->m_pLocalObject;
 }
 
 #endif

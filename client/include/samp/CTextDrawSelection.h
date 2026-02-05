@@ -83,40 +83,4 @@ CTextDrawSelection*& pTextDrawSelection();
 
 SAMP_END
 
-#elif defined(SAMP_DL)
-
-SAMP_BEGIN
-
-class SAMP_API CTextDrawSelection {
-public:
-
-	BOOL		m_bIsActive;
-	D3DCOLOR	m_hoveredColor;
-	ID			m_nHoveredId;
-
-	CTextDrawSelection() {
-		m_bIsActive = false;
-		m_hoveredColor = -1;
-		m_nHoveredId = -1;
-	}
-
-	~CTextDrawSelection() {
-		if (m_bIsActive)
-			ResetTextDraws();
-	}
-
-	void ResetTextDraws();
-	void RawProcess();
-	void Process();
-	void Enable(D3DCOLOR hoveredColor);
-	void SendNotification();
-	void Disable();
-	BOOL MsgProc(int uMsg, int wParam, int lParam);
-
-};
-
-CTextDrawSelection*& pTextDrawSelection();
-
-SAMP_END
-
 #endif

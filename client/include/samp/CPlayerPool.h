@@ -155,60 +155,22 @@ SAMP_END
 
 #define MAX_PLAYERS 1004
 
-class CPed;
-class CObject;
-
 SAMP_BEGIN
 
 class SAMP_API CPlayerPool {
 public:
+	ID					m_nLocalId;						// 0 - 2
+	void*				unk;							// 2 - 6
+	std::string			m_szLocalName;					// 6 - 30
+	CLocalPlayer*		m_pLocalObject;					// 30 - 34
+	int					m_nLargestId;					// 34 - 38
+	CPlayerInfo*		m_pObject[MAX_PLAYERS];			// 38 - 4054
+	BOOL				m_bNotEmpty[MAX_PLAYERS];		// 4054 - 8070
 
-	int					m_nLargestId;
-	CPlayerInfo*		m_pObject[MAX_PLAYERS];
-	BOOL				m_bNotEmpty[MAX_PLAYERS];
-	BOOL				m_bPrevCollisionFlag[MAX_PLAYERS];
-
-	struct SAMP_API {
-
-		int				m_nPing;
-		int				m_nScore;
-		ID				m_nId;
-#ifndef _DEBUG
-	private:
-		int				__align;
-	public:
-#endif
-		std::string		m_szName;
-		CLocalPlayer*	m_pObject;
-
-	}					m_localInfo;
-
-	CPlayerPool();
-	~CPlayerPool();
-
-	void UpdateLargestId();
-	void Process();
-	ID Find(::CPed* pGamePed);
-	void Deactivate();
-	void ForceCollision();
-	void RestoreCollision();
-	BOOL Delete(ID nId, int nReason = SAMP_UNUSED);
-	BOOL Create(ID nId, const char* szName, BOOL bIsNPC);
-	CRemotePlayer* GetPlayer(ID nId);
-	const char* GetLocalPlayerName();
-	BOOL IsDisconnected(ID nId);
-	BOOL IsConnected(ID nId);
-	void SetLocalPlayerName(const char* szName);
-	void SetAt(ID nId, CPlayerInfo* pObject);
-	int GetScore(ID nId);
-	int GetPing(ID nId);
 	const char* GetName(ID nId);
-	int GetLocalPlayerPing();
-	int GetLocalPlayerScore();
-	int GetCount(BOOL bIncludeNPC = 0);
+	CRemotePlayer* GetPlayer(ID nId);
+	BOOL IsConnected(ID nId);
 	CLocalPlayer* GetLocalPlayer();
-	CObjectSA* FindAccessory(::CObject* pGameObject);
-
 };
 
 SAMP_END

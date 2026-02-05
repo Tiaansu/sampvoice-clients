@@ -89,36 +89,13 @@ SAMP_END
 
 #elif defined(SAMP_DL)
 
-#include "CRectSA.h"
-
 SAMP_BEGIN
 
 class SAMP_API CScoreboard {
 public:
-
 	BOOL				m_bIsEnabled;
-	int					m_nPlayerCount;
-	float				m_position[2];
-	float				m_fScalar;
-	float				m_size[2];
-	float pad_[5];
-	IDirect3DDevice9*	m_pDevice;
-	CDXUTDialog*		m_pDialog;
-	CDXUTListBox*		m_pListbox;
-	int					m_nCurrentOffset;
-	BOOL				m_bIsSorted;
 
-	CScoreboard(IDirect3DDevice9* pDevice);
-
-	void Recalc();
-	void GetRect(CRectSA* pRect);
 	void Close(bool bHideCursor);
-	void ResetDialogControls(CDXUTDialog* pDialog);
-	void SendNotification();
-	void UpdateList();
-	void Draw();
-	void Enable();
-
 };
 
 CScoreboard*& pScoreboard();

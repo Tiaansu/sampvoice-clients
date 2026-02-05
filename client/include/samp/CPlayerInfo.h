@@ -76,21 +76,12 @@ SAMP_BEGIN
 
 class SAMP_API CPlayerInfo {
 public:
-
-	CRemotePlayer*	m_pPlayer;
-	int				m_nPing;
-#ifndef _DEBUG
-private:
-	int				__aling;
-public:
-#endif
-	std::string		m_szNick;
-	int				m_nScore;
-	BOOL			m_bIsNPC;
-
-	CPlayerInfo(const char* szName, BOOL bIsNPC);
-	~CPlayerInfo();
-
+	int					m_nScore;	// 0 - 4
+	int					m_bIsNPC;	// 4 - 8
+	CRemotePlayer*		m_pPlayer;	// 8 - 12
+	int					m_nPing;	// 16 - 20
+	void*				unk;		// 20 - 24
+	std::string			m_szNick;	// 24 - 48
 };
 
 SAMP_END
