@@ -31,10 +31,15 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
+      - uses: GuillaumeFalourd/setup-windows10-sdk-action@v2.4
+        with:
+          sdk-version: 26100
+
       - name: Generate build files
         run: |
           mkdir build
           cd build
+          cmake -DCMAKE_SYSTEM_VERSION=10.0.26100.0
           cmake -DCMAKE_BUILD_TYPE=Release ../ -A Win32
       
       - name: Build
