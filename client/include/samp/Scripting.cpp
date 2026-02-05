@@ -42,4 +42,21 @@ int SAMP::Scripting::ExecBuffer() {
 	return ((int(__cdecl*)())SAMP_ADDROF(0xB1A40))();
 }
 
+#elif defined(SAMP_DL)
+
+CRunningScript*& SAMP::Scripting::pThread() { return *(CRunningScript**)SAMP_ADDROF(0x2A93F0); }
+unsigned char* SAMP::Scripting::aBuffer() { return (unsigned char*)SAMP_ADDROF(0x2A92F0); }
+unsigned long& SAMP::Scripting::nLastUsedOpcode() { return *(unsigned long*)SAMP_ADDROF(0x2A93F4); }
+unsigned long*& SAMP::Scripting::apThreadLocals() { return *(unsigned long**)SAMP_ADDROF(0x2A92A8); }
+SAMP::Scripting::PROCESSOR& SAMP::Scripting::ProcessOneCommand() { return *(SAMP::Scripting::PROCESSOR*)SAMP_ADDROF(0x155390); }
+BOOL& SAMP::Scripting::bLocalDebug() { return *(BOOL*)SAMP_ADDROF(0x2A93F8); }
+
+void SAMP::Scripting::Initialize() {
+	((void(__cdecl*)())SAMP_ADDROF(0xB2150))();
+}
+
+int SAMP::Scripting::ExecBuffer() {
+	return ((int(__cdecl*)())SAMP_ADDROF(0xB1ED0))();
+}
+
 #endif

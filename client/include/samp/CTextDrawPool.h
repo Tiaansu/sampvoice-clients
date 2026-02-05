@@ -63,4 +63,30 @@ public:
 
 SAMP_END
 
+#elif defined(SAMP_DL)
+
+#include "CTextDraw.h"
+
+#define MAX_TEXTDRAWS 2048
+#define MAX_LOCAL_TEXTDRAWS 256 
+
+SAMP_BEGIN
+
+class SAMP_API CTextDrawPool {
+public:
+
+	BOOL		m_bNotEmpty[MAX_TEXTDRAWS + MAX_LOCAL_TEXTDRAWS];
+	CTextDraw*	m_pObject[MAX_TEXTDRAWS + MAX_LOCAL_TEXTDRAWS];
+
+	CTextDrawPool();
+	~CTextDrawPool();
+
+	void Delete(ID nId);
+	void Draw();
+	CTextDraw* Create(int nId, CTextDraw::Transmit* pData, const char* szText);
+
+};
+
+SAMP_END
+
 #endif

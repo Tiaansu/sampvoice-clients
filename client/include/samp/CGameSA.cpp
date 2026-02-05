@@ -597,4 +597,298 @@ void SAMP::CGameSA::ProcessFrameLimiter() {
 	((void(__thiscall*)(CGameSA*))SAMP_ADDROF(0xA14E0))(this);
 }
 
+#elif defined(SAMP_DL)
+
+char*& SAMP::CGameSA::szGameTextMessage() { return *(char**)SAMP_ADDROF(0x18E1CC); }
+bool* SAMP::CGameSA::aUsedPlayerSlots() { return (bool*)SAMP_ADDROF(0x18E1D8); }
+SAMP::CGameSA*& SAMP::pGame() { return *(SAMP::CGameSA**)SAMP_ADDROF(0x2ACA3C); }
+
+SAMP::CGameSA::CGameSA() {
+	((void(__thiscall*)(CGameSA*))SAMP_ADDROF(0x9FDC0))(this);
+}
+
+SAMP::CPedSA* SAMP::CGameSA::GetPlayerPed() {
+	return ((SAMP::CPedSA * (__thiscall*)(CGameSA*))SAMP_ADDROF(0x1010))(this);
+}
+
+float SAMP::CGameSA::FindGroundZ(CVectorSA vPoint) {
+	return ((float(__thiscall*)(CGameSA*, CVectorSA))SAMP_ADDROF(0xA0240))(this, vPoint);
+}
+
+void SAMP::CGameSA::SetCursorMode(int nMode, BOOL bImmediatelyHideCursor) {
+	((void(__thiscall*)(CGameSA*, int, BOOL))SAMP_ADDROF(0xA0530))(this, nMode, bImmediatelyHideCursor);
+}
+
+void SAMP::CGameSA::InitGame() {
+	((void(__thiscall*)(CGameSA*))SAMP_ADDROF(0xA06D0))(this);
+}
+
+void SAMP::CGameSA::StartGame() {
+	((void(__thiscall*)(CGameSA*))SAMP_ADDROF(0xA0720))(this);
+}
+
+BOOL SAMP::CGameSA::IsMenuVisible() {
+	return ((BOOL(__thiscall*)(CGameSA*))SAMP_ADDROF(0xA0760))(this);
+}
+
+BOOL SAMP::CGameSA::IsStarted() {
+	return ((BOOL(__thiscall*)(CGameSA*))SAMP_ADDROF(0xA0220))(this);
+}
+
+void SAMP::CGameSA::RequestModel(int nModel, int nLoadingStream) {
+	((void(__thiscall*)(CGameSA*, int, int))SAMP_ADDROF(0xA0770))(this, nModel, nLoadingStream);
+}
+
+void SAMP::CGameSA::LoadRequestedModels() {
+	((void(__thiscall*)(CGameSA*))SAMP_ADDROF(0xA07A0))(this);
+}
+
+BOOL SAMP::CGameSA::IsModelAvailable(int nModel) {
+	return ((BOOL(__thiscall*)(CGameSA*, int))SAMP_ADDROF(0xA07B0))(this, nModel);
+}
+
+void SAMP::CGameSA::ReleaseModel(int nModel, bool bGameFunc) {
+	((void(__thiscall*)(CGameSA*, int, bool))SAMP_ADDROF(0xA07E0))(this, nModel, bGameFunc);
+}
+
+void SAMP::CGameSA::SetWorldTime(char nHour, char nMinute) {
+	((void(__thiscall*)(CGameSA*, char, char))SAMP_ADDROF(0xA08F0))(this, nHour, nMinute);
+}
+
+void SAMP::CGameSA::GetWorldTime(char* nHour, char* nMinute) {
+	((void(__thiscall*)(CGameSA*, char*, char*))SAMP_ADDROF(0xA0920))(this, nHour, nMinute);
+}
+
+void SAMP::CGameSA::LetTimeGo(bool bLet) {
+	((void(__thiscall*)(CGameSA*, bool))SAMP_ADDROF(0xA0940))(this, bLet);
+}
+
+void SAMP::CGameSA::SetWorldWeather(char nWeather) {
+	((void(__thiscall*)(CGameSA*, char))SAMP_ADDROF(0xA0980))(this, nWeather);
+}
+
+void SAMP::CGameSA::SetFrameLimiter(int nValue) {
+	((void(__thiscall*)(CGameSA*, int))SAMP_ADDROF(0xA09F0))(this, nValue);
+}
+
+void SAMP::CGameSA::SetMaxStats() {
+	((void(__thiscall*)(CGameSA*))SAMP_ADDROF(0xA0A20))(this);
+}
+
+void SAMP::CGameSA::DisableTrainTraffic() {
+	((void(__thiscall*)(CGameSA*))SAMP_ADDROF(0xA0A50))(this);
+}
+
+void SAMP::CGameSA::RefreshRenderer(float fX, float fY) {
+	((void(__thiscall*)(CGameSA*, float, float))SAMP_ADDROF(0xA0A60))(this, fX, fY);
+}
+
+void SAMP::CGameSA::RequestAnimation(const char* szFile) {
+	((void(__thiscall*)(CGameSA*, const char*))SAMP_ADDROF(0xA0A90))(this, szFile);
+}
+
+BOOL SAMP::CGameSA::IsAnimationLoaded(const char* szFile) {
+	return ((BOOL(__thiscall*)(CGameSA*, const char*))SAMP_ADDROF(0xA0AB0))(this, szFile);
+}
+
+void SAMP::CGameSA::ReleaseAnimation(const char* szFile) {
+	((void(__thiscall*)(CGameSA*, const char*))SAMP_ADDROF(0xA0AD0))(this, szFile);
+}
+
+void SAMP::CGameSA::DisplayGameText(const char* szText, int nTime, int nSize) {
+	((void(__thiscall*)(CGameSA*, const char*, int, int))SAMP_ADDROF(0xA0B20))(this, szText, nTime, nSize);
+}
+
+void SAMP::CGameSA::DeleteRacingCheckpoint() {
+	((void(__thiscall*)(CGameSA*))SAMP_ADDROF(0xA0B80))(this);
+}
+
+SAMP::GTAREF SAMP::CGameSA::CreateMarker(int nIcon, CVectorSA vPosition, int nColor, int nType) {
+	return ((GTAREF(__thiscall*)(CGameSA*, int, CVectorSA, int, int))SAMP_ADDROF(0xA0BB0))(this, nIcon, vPosition, nColor, nType);
+}
+
+void SAMP::CGameSA::DeleteMarker(GTAREF handle) {
+	((void(__thiscall*)(CGameSA*, GTAREF))SAMP_ADDROF(0xA0CE0))(this, handle);
+}
+
+char SAMP::CGameSA::GetCurrentInterior() {
+	return ((char(__thiscall*)(CGameSA*))SAMP_ADDROF(0xA0D00))(this);
+}
+
+void SAMP::CGameSA::UpdateFarClippingPlane() {
+	((void(__thiscall*)(CGameSA*))SAMP_ADDROF(0xA0D20))(this);
+}
+
+void SAMP::CGameSA::IncreasePlayerMoney(int nInc) {
+	((void(__thiscall*)(CGameSA*, int))SAMP_ADDROF(0xA0D90))(this, nInc);
+}
+
+int SAMP::CGameSA::GetPlayerMoney() {
+	return ((int(__thiscall*)(CGameSA*))SAMP_ADDROF(0xA0DB0))(this);
+}
+
+const char* SAMP::CGameSA::GetWeaponName(int nWeapon) {
+	return ((const char* (__thiscall*)(CGameSA*, int))SAMP_ADDROF(0xA0DC0))(this, nWeapon);
+}
+
+void SAMP::CGameSA::CreatePickup(int nModel, int nType, CVectorSA vPosition, GTAREF* handle) {
+	((void(__thiscall*)(CGameSA*, int, int, CVectorSA, GTAREF*))SAMP_ADDROF(0xA1010))(this, nModel, nType, vPosition, handle);
+}
+
+SAMP::GTAREF SAMP::CGameSA::CreateWeaponPickup(int nModel, int nAmmo, CVectorSA vPosition) {
+	return ((GTAREF(__thiscall*)(CGameSA*, int, int, CVectorSA))SAMP_ADDROF(0xA10F0))(this, nModel, nAmmo, vPosition);
+}
+
+IDirect3DDevice9* SAMP::CGameSA::GetDevice() {
+	return ((IDirect3DDevice9 * (__thiscall*)(CGameSA*))SAMP_ADDROF(0xA1190))(this);
+}
+
+void SAMP::CGameSA::Restart() {
+	((void(__thiscall*)(CGameSA*))SAMP_ADDROF(0xA11D0))(this);
+}
+
+CWeaponInfo* SAMP::CGameSA::GetWeaponInfo(int nWeapon, int nSkill) {
+	return ((CWeaponInfo * (__thiscall*)(CGameSA*, int, int))SAMP_ADDROF(0xA1200))(this, nWeapon, nSkill);
+}
+
+void SAMP::CGameSA::SetWorldGravity(float fValue) {
+	((void(__thiscall*)(CGameSA*, float))SAMP_ADDROF(0xA1220))(this, fValue);
+}
+
+void SAMP::CGameSA::SetWantedLevel(char nLevel) {
+	((void(__thiscall*)(CGameSA*, char))SAMP_ADDROF(0xA1240))(this, nLevel);
+}
+
+void SAMP::CGameSA::SetNumberOfIntroTextLinesThisFrame(unsigned short nValue) {
+	((void(__thiscall*)(CGameSA*, unsigned short))SAMP_ADDROF(0xA1250))(this, nValue);
+}
+
+void SAMP::CGameSA::DrawGangZone(float* pPos, char nColor) {
+	((void(__thiscall*)(CGameSA*, float*, char))SAMP_ADDROF(0xA1260))(this, pPos, nColor);
+}
+
+void SAMP::CGameSA::EnableZoneDisplaying(bool bEnable) {
+	((void(__thiscall*)(CGameSA*, bool))SAMP_ADDROF(0xA1340))(this, bEnable);
+}
+
+void SAMP::CGameSA::EnableStuntBonus(bool bEnable) {
+	((void(__thiscall*)(CGameSA*, bool))SAMP_ADDROF(0xA1360))(this, bEnable);
+}
+
+void SAMP::CGameSA::LoadScene(const char* szFile) {
+	((void(__thiscall*)(CGameSA*, const char*))SAMP_ADDROF(0xA13D0))(this, szFile);
+}
+
+int SAMP::CGameSA::GetUsedMemory() {
+	return ((int(__thiscall*)(CGameSA*))SAMP_ADDROF(0xA13F0))(this);
+}
+
+int SAMP::CGameSA::GetStreamingMemory() {
+	return ((int(__thiscall*)(CGameSA*))SAMP_ADDROF(0xA1400))(this);
+}
+
+void SAMP::CGameSA::SetRequiredVehicleModels(unsigned char* pModelCount) {
+	((void(__thiscall*)(CGameSA*, unsigned char*))SAMP_ADDROF(0xA1430))(this, pModelCount);
+}
+
+int SAMP::CGameSA::GetTimer() {
+	return ((int(__thiscall*)(CGameSA*))SAMP_ADDROF(0xA1590))(this);
+}
+
+void SAMP::CGameSA::LoadAnimationsAndModels() {
+	((void(__thiscall*)(CGameSA*))SAMP_ADDROF(0xA16C0))(this);
+}
+
+void SAMP::CGameSA::LoadCollisionFile(const char* szFile) {
+	((void(__thiscall*)(CGameSA*, const char*))SAMP_ADDROF(0xA19A0))(this, szFile);
+}
+
+void SAMP::CGameSA::LoadCullZone(const char* szLine) {
+	((void(__thiscall*)(CGameSA*, const char*))SAMP_ADDROF(0xA19C0))(this, szLine);
+}
+
+BOOL SAMP::CGameSA::UsingGamepad() {
+	return ((BOOL(__thiscall*)(CGameSA*))SAMP_ADDROF(0xA19E0))(this);
+}
+
+void SAMP::CGameSA::DisableAutoAiming() {
+	((void(__thiscall*)(CGameSA*))SAMP_ADDROF(0xA19F0))(this);
+}
+
+void SAMP::CGameSA::EnableHUD(BOOL bEnable) {
+	((void(__thiscall*)(CGameSA*, BOOL))SAMP_ADDROF(0xA1BD0))(this, bEnable);
+}
+
+void SAMP::CGameSA::SetCheckpoint(CVectorSA* pPos, CVectorSA* pSize) {
+	((void(__thiscall*)(CGameSA*, CVectorSA*, CVectorSA*))SAMP_ADDROF(0xA1C00))(this, pPos, pSize);
+}
+
+void SAMP::CGameSA::CreateRacingCheckpoint() {
+	((void(__thiscall*)(CGameSA*))SAMP_ADDROF(0xA1CC0))(this);
+}
+
+void SAMP::CGameSA::ProcessCheckpoints() {
+	((void(__thiscall*)(CGameSA*))SAMP_ADDROF(0xA1D40))(this);
+}
+
+void SAMP::CGameSA::ResetMoney() {
+	((void(__thiscall*)(CGameSA*))SAMP_ADDROF(0xA1EE0))(this);
+}
+
+void SAMP::CGameSA::SetRacingCheckpoint(int nType, CVectorSA* pCurrentPos, CVectorSA* pNextPos, float fSize) {
+	((void(__thiscall*)(CGameSA*, int, CVectorSA*, CVectorSA*, float))SAMP_ADDROF(0xA1F20))(this, nType, pCurrentPos, pNextPos, fSize);
+}
+
+void SAMP::CGameSA::EnableRadar(BOOL bEnable) {
+	((void(__thiscall*)(CGameSA*, BOOL))SAMP_ADDROF(0xA0B00))(this, bEnable);
+}
+
+void* SAMP::CGameSA::GetWindowHandle() {
+	return ((void* (__thiscall*)(CGameSA*))SAMP_ADDROF(0x2D40))(this);
+}
+
+SAMP::CAudio* SAMP::CGameSA::GetAudio() {
+	return ((CAudio * (__thiscall*)(CGameSA*))SAMP_ADDROF(0x2D50))(this);
+}
+
+SAMP::CCameraSA* SAMP::CGameSA::GetCamera() {
+	return ((CCameraSA * (__thiscall*)(CGameSA*))SAMP_ADDROF(0x2D60))(this);
+}
+
+BOOL SAMP::CGameSA::DoesHeadMoves() {
+	return ((BOOL(__thiscall*)(CGameSA*))SAMP_ADDROF(0x2D70))(this);
+}
+
+void SAMP::CGameSA::EnableClock(bool bEnable) {
+	((void(__thiscall*)(CGameSA*, bool))SAMP_ADDROF(0xA1280))(this, bEnable);
+}
+
+void SAMP::CGameSA::Sleep(int elapsed, int fpsLimit) {
+	((void(__thiscall*)(CGameSA*, int, int))SAMP_ADDROF(0x9FED0))(this, elapsed, fpsLimit);
+}
+
+SAMP::CPedSA* SAMP::CGameSA::CreatePed(int nModel, CVectorSA position, float fRotation, int a6, int a7) {
+	return ((CPedSA * (__thiscall*)(CGameSA*, int, CVectorSA, float, int, int))SAMP_ADDROF(0x9FF50))(this, nModel, position, fRotation, a6, a7);
+}
+
+BOOL SAMP::CGameSA::RemovePed(CPedSA* pPed) {
+	return ((BOOL(__thiscall*)(CGameSA*, CPedSA*))SAMP_ADDROF(0xA0050))(this, pPed);
+}
+
+SAMP::CVehicleSA* SAMP::CGameSA::CreateVehicle(int nModel, CVectorSA position, float fRotation, BOOL bHasSiren) {
+	return ((CVehicleSA * (__thiscall*)(CGameSA*, int, CVectorSA, float, BOOL))SAMP_ADDROF(0xA0090))(this, nModel, position, fRotation, bHasSiren);
+}
+
+SAMP::CObjectSA* SAMP::CGameSA::CreateObject(int nModel, CVectorSA position, CVectorSA rotation, float fDrawDistance, char a11, char a12) {
+	return ((CObjectSA * (__thiscall*)(CGameSA*, int, CVectorSA, CVectorSA, float, char, char))SAMP_ADDROF(0xA0170))(this, nModel, position, rotation, fDrawDistance, a11, a12);
+}
+
+void SAMP::CGameSA::ProcessInputEnabling() {
+	((void(__thiscall*)(CGameSA*))SAMP_ADDROF(0xA0410))(this);
+}
+
+void SAMP::CGameSA::ProcessFrameLimiter() {
+	((void(__thiscall*)(CGameSA*))SAMP_ADDROF(0xA1A30))(this);
+}
+
 #endif

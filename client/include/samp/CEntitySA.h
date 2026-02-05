@@ -130,4 +130,62 @@ public:
 
 SAMP_END
 
+#elif defined(SAMP_DL)
+
+#include "CVectorSA.h"
+#include "CMatrixSA.h"
+
+class CEntity;
+struct RwObject;
+
+SAMP_BEGIN
+
+class SAMP_API CEntitySA {
+public:
+
+	// void **m_lpVtbl = samp.dll+0xEC28C;
+
+	char pad_4[60];
+	::CEntity*	m_pGameEntity;
+	GTAREF		m_handle;
+
+	CEntitySA();
+
+	virtual ~CEntitySA() SAMP_VIRTUAL;
+	virtual void Add() SAMP_VIRTUAL; // adds entity to the game world
+	virtual void Remove() SAMP_VIRTUAL; // removes entity from the game world
+
+	void GetMatrix(CMatrixSA* pMatrix);
+	void SetMatrix(CMatrixSA matrix);
+	void GetSpeed(CVectorSA* pVec);
+	void SetSpeed(CVectorSA vec);
+	void GetTurnSpeed(CVectorSA* pVec);
+	void SetTurnSpeed(CVectorSA vec);
+	void ApplyTurnSpeed();
+	float GetDistanceFromCentreOfMassToBaseOfModel();
+	void GetBoundCentre(CVectorSA* pVec);
+	void SetModelIndex(int nModel);
+	int GetModelIndex();
+	void Teleport(CVectorSA position);
+	float GetDistanceToLocalPlayer();
+	float GetDistanceToCamera();
+	float GetDistanceToPoint(CVectorSA position);
+	BOOL DoesExist(); // does entity exist in the game world?
+	BOOL EnforceWorldBoundries(float fPX, float fZX, float fPY, float fNY);
+	BOOL HasExceededWorldBoundries(float fPX, float fZX, float fPY, float fNY);
+	void GetEulerInverted(float* x, float* y, float* z);
+	BOOL IsIgnored();
+	BOOL IsStationary();
+	BOOL GetCollisionFlag();
+	void SetCollisionFlag(BOOL bEnable);
+	RwObject* GetRwObject();
+	void DeleteRwObject();
+	void UpdateRwFrame();
+	float GetDistanceToLocalPlayerNoHeight();
+	void SetCollisionProcessed(BOOL bProcessed);
+
+};
+
+SAMP_END
+
 #endif

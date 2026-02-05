@@ -94,4 +94,42 @@ public:
 
 SAMP_END
 
+#elif defined(SAMP_DL)
+
+#include "CVectorSA.h"
+#include "CObjectSA.h"
+
+#define MAX_OBJECTS 2100
+
+class CObject;
+
+SAMP_BEGIN
+
+class SAMP_API CObjectPool {
+public:
+
+	int			m_nLargestId;
+	BOOL		m_bNotEmpty[MAX_OBJECTS];
+	CObjectSA*	m_pObject[MAX_OBJECTS];
+
+	CObjectPool();
+	~CObjectPool();
+
+	void UpdateLargestId();
+	int GetCount();
+	BOOL Delete(ID nId);
+	BOOL Create(ID nId, int nModel, CVectorSA position, CVectorSA rotation, float fDrawDistance);
+	CObjectSA* Find(::CObject* pGameObject);
+	int GetId(::CObject* pGameObject);
+	void Process();
+	void ConstructMaterials();
+	void ShutdownMaterials();
+	void Draw();
+	void DrawLast();
+	CObjectSA* GetObject(ID nId);
+
+};
+
+SAMP_END
+
 #endif

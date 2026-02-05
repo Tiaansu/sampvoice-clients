@@ -53,4 +53,26 @@ void SAMP::CLabelPool::Draw() {
 	((void(__thiscall*)(CLabelPool*))SAMP_ADDROF(0x1340))(this);
 }
 
+#elif defined(SAMP_DL)
+
+SAMP::CLabelPool::CLabelPool() {
+	((void(__thiscall*)(CLabelPool*))SAMP_ADDROF(0x1190))(this);
+}
+
+SAMP::CLabelPool::~CLabelPool() {
+	((void(__thiscall*)(CLabelPool*))SAMP_ADDROF(0x15E0))(this);
+}
+
+void SAMP::CLabelPool::Create(ID nId, const char* szText, D3DCOLOR color, CVectorSA position, float fDrawDistance, bool bBehindWalls, ID nAttachedToPlayer, ID nAttachedToVehicle) {
+	((void(__thiscall*)(CLabelPool*, ID, const char*, D3DCOLOR, CVectorSA, float, bool, ID, ID))SAMP_ADDROF(0x11D0))(this, nId, szText, color, position, fDrawDistance, bBehindWalls, nAttachedToPlayer, nAttachedToVehicle);
+}
+
+BOOL SAMP::CLabelPool::Delete(ID nId) {
+	return ((BOOL(__thiscall*)(CLabelPool*, ID))SAMP_ADDROF(0x12E0))(this, nId);
+}
+
+void SAMP::CLabelPool::Draw() {
+	((void(__thiscall*)(CLabelPool*))SAMP_ADDROF(0x1350))(this);
+}
+
 #endif

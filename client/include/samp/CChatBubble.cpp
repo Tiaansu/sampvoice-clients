@@ -25,4 +25,20 @@ void SAMP::CChatBubble::Draw() {
 	((void(__thiscall*)(CChatBubble*))SAMP_ADDROF(0x66760))(this);
 }
 
+#elif defined(SAMP_DL)
+
+SAMP::CChatBubble*& SAMP::pChatBubble() { return *(SAMP::CChatBubble**)SAMP_ADDROF(0x2ACA08); }
+
+SAMP::CChatBubble::CChatBubble() {
+	((void(__thiscall*)(CChatBubble*))SAMP_ADDROF(0x66860))(this);
+}
+
+void SAMP::CChatBubble::Add(ID nPlayer, const char* szText, D3DCOLOR color, float fDrawDistance, int lifeSpan) {
+	((void(__thiscall*)(CChatBubble*, ID, const char*, D3DCOLOR, float, int))SAMP_ADDROF(0x66890))(this, nPlayer, szText, color, fDrawDistance, lifeSpan);
+}
+
+void SAMP::CChatBubble::Draw() {
+	((void(__thiscall*)(CChatBubble*))SAMP_ADDROF(0x66950))(this);
+}
+
 #endif

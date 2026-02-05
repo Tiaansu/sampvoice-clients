@@ -464,4 +464,226 @@ void SAMP::CLocalPlayer::Process() {
 	((void(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x7270))(this);
 }
 
+#elif defined(SAMP_DL)
+
+SAMP::CLocalPlayer::CLocalPlayer() {
+	((void(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x4AF0))(this);
+}
+
+SAMP::CPedSA* SAMP::CLocalPlayer::GetPed() {
+	return ((CPedSA * (__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x2DA0))(this);
+}
+
+void SAMP::CLocalPlayer::ResetData() {
+	((void(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x2EC0))(this);
+}
+
+void SAMP::CLocalPlayer::ProcessHead() {
+	((void(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x2FD0))(this);
+}
+
+void SAMP::CLocalPlayer::SetSpecialAction(char nId) {
+	((void(__thiscall*)(CLocalPlayer*, char))SAMP_ADDROF(0x3110))(this, nId);
+}
+
+char SAMP::CLocalPlayer::GetSpecialAction() {
+	return ((char(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x3390))(this);
+}
+
+void SAMP::CLocalPlayer::UpdateSurfing() {
+	((void(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x34B0))(this);
+}
+
+void SAMP::CLocalPlayer::SetSurfing(CVehicleSA* pVehicle, BOOL bStuck) {
+	((void(__thiscall*)(CLocalPlayer*, CVehicleSA*, BOOL))SAMP_ADDROF(0x3630))(this, pVehicle, bStuck);
+}
+
+void SAMP::CLocalPlayer::ProcessSurfing() {
+	((void(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x3650))(this);
+}
+
+BOOL SAMP::CLocalPlayer::NeedsToUpdate(const void* pOld, const void* pNew, unsigned int nLen) {
+	return ((BOOL(__thiscall*)(CLocalPlayer*, const void*, const void*, unsigned int))SAMP_ADDROF(0x3970))(this, pOld, pNew, nLen);
+}
+
+int SAMP::CLocalPlayer::GetIncarSendRate() {
+	return ((int(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x39C0))(this);
+}
+
+int SAMP::CLocalPlayer::GetOnfootSendRate() {
+	return ((int(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x3A00))(this);
+}
+
+int SAMP::CLocalPlayer::GetUnoccupiedSendRate() {
+	return ((int(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x3A40))(this);
+}
+
+void SAMP::CLocalPlayer::SetSpawnInfo(const SpawnInfo* pInfo) {
+	((void(__thiscall*)(CLocalPlayer*, const SpawnInfo*))SAMP_ADDROF(0x3AF0))(this, pInfo);
+}
+
+BOOL SAMP::CLocalPlayer::Spawn() {
+	return ((BOOL(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x3B20))(this);
+}
+
+void SAMP::CLocalPlayer::SetColor(D3DCOLOR color) {
+	((void(__thiscall*)(CLocalPlayer*, D3DCOLOR))SAMP_ADDROF(0x3DE0))(this, color);
+}
+
+D3DCOLOR SAMP::CLocalPlayer::GetColorAsRGBA() {
+	return ((D3DCOLOR(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x3E00))(this);
+}
+
+D3DCOLOR SAMP::CLocalPlayer::GetColorAsARGB() {
+	return ((D3DCOLOR(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x3E20))(this);
+}
+
+void SAMP::CLocalPlayer::ProcessOnfootWorldBounds() {
+	((void(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x3E40))(this);
+}
+
+void SAMP::CLocalPlayer::ProcessIncarWorldBounds() {
+	((void(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x3EA0))(this);
+}
+
+void SAMP::CLocalPlayer::RequestSpawn() {
+	((void(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x3F40))(this);
+}
+
+void SAMP::CLocalPlayer::PrepareForClassSelection() {
+	((void(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x3F60))(this);
+}
+
+void SAMP::CLocalPlayer::PrepareForClassSelection_Outcome(BOOL bOutcome) {
+	((void(__thiscall*)(CLocalPlayer*, BOOL))SAMP_ADDROF(0x3FB0))(this, bOutcome);
+}
+
+void SAMP::CLocalPlayer::EnableSpectating(BOOL bEnable) {
+	((void(__thiscall*)(CLocalPlayer*, BOOL))SAMP_ADDROF(0x4080))(this, bEnable);
+}
+
+void SAMP::CLocalPlayer::SpectateForVehicle(ID nId) {
+	((void(__thiscall*)(CLocalPlayer*, ID))SAMP_ADDROF(0x40F0))(this, nId);
+}
+
+void SAMP::CLocalPlayer::SpectateForPlayer(ID nId) {
+	((void(__thiscall*)(CLocalPlayer*, ID))SAMP_ADDROF(0x4140))(this, nId);
+}
+
+BOOL SAMP::CLocalPlayer::NeedsToSendOnfootData(short controllerState, short sLeftStickX, short sLeftStickY) {
+	return ((BOOL(__thiscall*)(CLocalPlayer*, short, short, short))SAMP_ADDROF(0x41C0))(this, controllerState, sLeftStickX, sLeftStickY);
+}
+
+BOOL SAMP::CLocalPlayer::NeedsToSendIncarData(short controllerState, short sLeftStickX, short sLeftStickY) {
+	return ((BOOL(__thiscall*)(CLocalPlayer*, short, short, short))SAMP_ADDROF(0x41F0))(this, controllerState, sLeftStickX, sLeftStickY);
+}
+
+bool SAMP::CLocalPlayer::DefineCameraTarget(CameraTarget* pInfo) {
+	return ((bool(__thiscall*)(CLocalPlayer*, CameraTarget*))SAMP_ADDROF(0x4300))(this, pInfo);
+}
+
+void SAMP::CLocalPlayer::UpdateCameraTarget() {
+	((void(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x45C0))(this);
+}
+
+void SAMP::CLocalPlayer::DrawCameraTargetLabel() {
+	((void(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x4710))(this);
+}
+
+void SAMP::CLocalPlayer::SendUnoccupiedData(ID nVehicle, char arg4) {
+	((void(__thiscall*)(CLocalPlayer*, ID, char))SAMP_ADDROF(0x4BD0))(this, nVehicle, arg4);
+}
+
+void SAMP::CLocalPlayer::SendOnfootData() {
+	((void(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x4DB0))(this);
+}
+
+void SAMP::CLocalPlayer::SendAimData() {
+	((void(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x5090))(this);
+}
+
+void SAMP::CLocalPlayer::SendTrailerData(ID nTrailer) {
+	((void(__thiscall*)(CLocalPlayer*, ID))SAMP_ADDROF(0x5240))(this, nTrailer);
+}
+
+void SAMP::CLocalPlayer::SendPassengerData() {
+	((void(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x5400))(this);
+}
+
+void SAMP::CLocalPlayer::WastedNotification() {
+	((void(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x5660))(this);
+}
+
+void SAMP::CLocalPlayer::RequestClass(int nId) {
+	((void(__thiscall*)(CLocalPlayer*, int))SAMP_ADDROF(0x5720))(this, nId);
+}
+
+void SAMP::CLocalPlayer::ChangeInterior(char nId) {
+	((void(__thiscall*)(CLocalPlayer*, char))SAMP_ADDROF(0x57C0))(this, nId);
+}
+
+void SAMP::CLocalPlayer::Chat(const char* szText) {
+	((void(__thiscall*)(CLocalPlayer*, const char*))SAMP_ADDROF(0x5860))(this, szText);
+}
+
+void SAMP::CLocalPlayer::EnterVehicle(int nVehicle, BOOL bPassenger) {
+	((void(__thiscall*)(CLocalPlayer*, int, BOOL))SAMP_ADDROF(0x5920))(this, nVehicle, bPassenger);
+}
+
+void SAMP::CLocalPlayer::ExitVehicle(int nVehicle) {
+	((void(__thiscall*)(CLocalPlayer*, int))SAMP_ADDROF(0x5A40))(this, nVehicle);
+}
+
+void SAMP::CLocalPlayer::SendStats() {
+	((void(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x5B50))(this);
+}
+
+void SAMP::CLocalPlayer::UpdateVehicleDamage(ID nVehicle) {
+	((void(__thiscall*)(CLocalPlayer*, ID))SAMP_ADDROF(0x5C20))(this, nVehicle);
+}
+
+void SAMP::CLocalPlayer::NextClass() {
+	((void(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x5E30))(this);
+}
+
+void SAMP::CLocalPlayer::PrevClass() {
+	((void(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x5EC0))(this);
+}
+
+void SAMP::CLocalPlayer::ProcessClassSelection() {
+	((void(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x5F40))(this);
+}
+
+void SAMP::CLocalPlayer::UpdateWeapons() {
+	((void(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x5F40))(this);
+}
+
+void SAMP::CLocalPlayer::ProcessSpectating() {
+	((void(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x6360))(this);
+}
+
+void SAMP::CLocalPlayer::SendTakeDamage(int nId, float fDamage, int nWeapon, int nBodyPart) {
+	((void(__thiscall*)(CLocalPlayer*, int, float, int, int))SAMP_ADDROF(0x66B0))(this, nId, fDamage, nWeapon, nBodyPart);
+}
+
+void SAMP::CLocalPlayer::SendGiveDamage(int nId, float fDamage, int nWeapon, int nBodyPart) {
+	((void(__thiscall*)(CLocalPlayer*, int, float, int, int))SAMP_ADDROF(0x67C0))(this, nId, fDamage, nWeapon, nBodyPart);
+}
+
+bool SAMP::CLocalPlayer::ProcessUnoccupiedSync(ID nVehicle, CVehicleSA* pVehicle) {
+	return ((bool(__thiscall*)(CLocalPlayer*, ID, CVehicleSA*))SAMP_ADDROF(0x6C10))(this, nVehicle, pVehicle);
+}
+
+void SAMP::CLocalPlayer::EnterVehicleAsPassenger() {
+	((void(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x6DE0))(this);
+}
+
+void SAMP::CLocalPlayer::SendIncarData() {
+	((void(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x6E80))(this);
+}
+
+void SAMP::CLocalPlayer::Process() {
+	((void(__thiscall*)(CLocalPlayer*))SAMP_ADDROF(0x72D0))(this);
+}
+
 #endif

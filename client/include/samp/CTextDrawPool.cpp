@@ -53,4 +53,26 @@ SAMP::CTextDraw* SAMP::CTextDrawPool::Create(int nId, CTextDraw::Transmit* pData
 	return ((CTextDraw * (__thiscall*)(CTextDrawPool*, int, CTextDraw::Transmit*, const char*))SAMP_ADDROF(0x1E1C0))(this, nId, pData, szText);
 }
 
+#elif defined(SAMP_DL)
+
+SAMP::CTextDrawPool::CTextDrawPool() {
+	((void(__thiscall*)(CTextDrawPool*))SAMP_ADDROF(0x1E260))(this);
+}
+
+SAMP::CTextDrawPool::~CTextDrawPool() {
+	((void(__thiscall*)(CTextDrawPool*))SAMP_ADDROF(0x1E390))(this);
+}
+
+void SAMP::CTextDrawPool::Delete(ID nId) {
+	((void(__thiscall*)(CTextDrawPool*, ID))SAMP_ADDROF(0x1E2B0))(this, nId);
+}
+
+void SAMP::CTextDrawPool::Draw() {
+	((void(__thiscall*)(CTextDrawPool*))SAMP_ADDROF(0x1E2F0))(this);
+}
+
+SAMP::CTextDraw* SAMP::CTextDrawPool::Create(int nId, CTextDraw::Transmit* pData, const char* szText) {
+	return ((CTextDraw * (__thiscall*)(CTextDrawPool*, int, CTextDraw::Transmit*, const char*))SAMP_ADDROF(0x1E3D0))(this, nId, pData, szText);
+}
+
 #endif

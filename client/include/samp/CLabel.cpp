@@ -81,4 +81,40 @@ void SAMP::CLabel::Draw(CVectorSA* pPosition, const char* szText, D3DCOLOR color
 	((void(__thiscall*)(CLabel*, CVectorSA*, const char*, D3DCOLOR, BOOL, bool))SAMP_ADDROF(0x6B520))(this, pPosition, szText, color, bShadow, bNoObstacles);
 }
 
+#elif defined(SAMP_DL)
+
+SAMP::CLabel*& SAMP::pLabel() { return *(SAMP::CLabel**)SAMP_ADDROF(0x2AC9EC); }
+
+SAMP::CLabel::CLabel(IDirect3DDevice9* pDevice) {
+	((void(__thiscall*)(CLabel*, IDirect3DDevice9*))SAMP_ADDROF(0x6B5F0))(this, pDevice);
+}
+
+SAMP::CLabel::~CLabel() {
+	((void(__thiscall*)(CLabel*))SAMP_ADDROF(0x6B610))(this);
+}
+
+void SAMP::CLabel::OnLostDevice() {
+	((void(__thiscall*)(CLabel*))SAMP_ADDROF(0x6B630))(this);
+}
+
+void SAMP::CLabel::OnResetDevice() {
+	((void(__thiscall*)(CLabel*))SAMP_ADDROF(0x6B640))(this);
+}
+
+BOOL SAMP::CLabel::HasNoObstacles(CVectorSA position) {
+	return ((BOOL(__thiscall*)(CLabel*, CVectorSA))SAMP_ADDROF(0x6B650))(this, position);
+}
+
+void SAMP::CLabel::Begin() {
+	((void(__thiscall*)(CLabel*))SAMP_ADDROF(0x6B6B0))(this);
+}
+
+void SAMP::CLabel::End() {
+	((void(__thiscall*)(CLabel*))SAMP_ADDROF(0x6B6C0))(this);
+}
+
+void SAMP::CLabel::Draw(CVectorSA* pPosition, const char* szText, D3DCOLOR color, BOOL bShadow, bool bNoObstacles) {
+	((void(__thiscall*)(CLabel*, CVectorSA*, const char*, D3DCOLOR, BOOL, bool))SAMP_ADDROF(0x6B6D0))(this, pPosition, szText, color, bShadow, bNoObstacles);
+}
+
 #endif

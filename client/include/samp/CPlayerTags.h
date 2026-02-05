@@ -73,4 +73,35 @@ CPlayerTags*& pPlayerTags();
 
 SAMP_END
 
+#elif defined(SAMP_DL)
+
+#include "CVectorSA.h"
+
+SAMP_BEGIN
+
+class SAMP_API CPlayerTags {
+public:
+
+	IDirect3DDevice9*		m_pDevice;
+	IDirect3DStateBlock9*	m_pStates;
+	ID3DXSprite*			m_pSprite;
+
+	CPlayerTags(IDirect3DDevice9* pDevice);
+	~CPlayerTags();
+
+	void EndHealthBar();
+	void BeginLabel();
+	void EndLabel();
+	void DrawLabel(CVectorSA* pPosition, const char* szText, D3DCOLOR color, float fDistanceToCamera, bool bDrawStatus, int nStatus);
+	void DrawHealthBar(CVectorSA* pPosition, float fHealth, float fArmour, float fDistanceToCamera);
+	void OnLostDevice();
+	void OnResetDevice();
+	void BeginHealthBar();
+
+};
+
+CPlayerTags*& pPlayerTags();
+
+SAMP_END
+
 #endif

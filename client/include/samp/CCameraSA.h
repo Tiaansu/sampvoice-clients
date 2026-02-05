@@ -85,4 +85,41 @@ public:
 
 SAMP_END
 
+#elif defined(SAMP_DL)
+
+#include "CVectorSA.h"
+#include "CMatrixSA.h"
+#include "CEntitySA.h"
+
+class CEntity;
+
+SAMP_BEGIN
+
+class SAMP_API CCameraSA {
+public:
+
+	CEntitySA* m_pOwner;
+	CMatrixSA* m_pMatrix;
+
+	CCameraSA();
+	~CCameraSA();
+
+	void Fade(BOOL bin);
+	void GetMatrix(CMatrixSA* pMatrix);
+	void SetMatrix(CMatrixSA matrix);
+	void TakeControl(::CEntity* pTarget, short nModeToGoTo, short nTypeOfSwitch);
+	void SetMoveVector(CVectorSA* pCamera, CVectorSA* pPosition, int nTime, bool bSmoothTransmition);
+	void SetTrackVector(CVectorSA* pPointAt, CVectorSA* pTransverseTo, int nTime, bool bSmooth);
+	void Attach(CEntitySA* pOwner);
+	void SetToOwner();
+	float GetDistanceToPoint(CVectorSA* pPoint);
+	void Restore();
+	void Set(CVectorSA position, CVectorSA rotation);
+	void PointAt(CVectorSA point, int nSwitchStyle);
+	void Detach();
+
+};
+
+SAMP_END
+
 #endif

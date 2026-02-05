@@ -85,4 +85,40 @@ void SAMP::CDialog::Draw() {
 	((void(__thiscall*)(CDialog*))SAMP_ADDROF(0x6F140))(this);
 }
 
+#elif defined(SAMP_DL)
+
+SAMP::CDialog*& SAMP::pDialog() { return *(SAMP::CDialog**)SAMP_ADDROF(0x2AC9E0); }
+
+SAMP::CDialog::CDialog(IDirect3DDevice9* pDevice) {
+	((void(__thiscall*)(CDialog*, IDirect3DDevice9*))SAMP_ADDROF(0x6EEC0))(this, pDevice);
+}
+
+void SAMP::CDialog::GetScreenRect(CRectSA* pRect) {
+	((void(__thiscall*)(CDialog*, CRectSA*))SAMP_ADDROF(0x6F0F0))(this, pRect);
+}
+
+int SAMP::CDialog::GetTextScreenLength(const char* szString) {
+	return ((int(__thiscall*)(CDialog*, const char*))SAMP_ADDROF(0x6F120))(this, szString);
+}
+
+void SAMP::CDialog::Hide() {
+	((void(__thiscall*)(CDialog*))SAMP_ADDROF(0x6F2A0))(this);
+}
+
+void SAMP::CDialog::ResetDialogControls(CDXUTDialog* pDialog) {
+	((void(__thiscall*)(CDialog*, CDXUTDialog*))SAMP_ADDROF(0x6F460))(this, pDialog);
+}
+
+void SAMP::CDialog::Show(int nId, int nType, const char* szCaption, const char* szText, const char* szLeftButton, const char* szRightButton, BOOL bServerside) {
+	((void(__thiscall*)(CDialog*, int, int, const char*, const char*, const char*, const char*, BOOL))SAMP_ADDROF(0x6FA50))(this, nId, nType, szCaption, szText, szLeftButton, szRightButton, bServerside);
+}
+
+void SAMP::CDialog::Close(char nProcessButton) {
+	((void(__thiscall*)(CDialog*, char))SAMP_ADDROF(0x700D0))(this, nProcessButton);
+}
+
+void SAMP::CDialog::Draw() {
+	((void(__thiscall*)(CDialog*))SAMP_ADDROF(0x6F2D0))(this);
+}
+
 #endif

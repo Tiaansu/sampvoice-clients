@@ -101,4 +101,49 @@ namespace Commands {
 
 SAMP_END
 
+#elif defined(SAMP_DL)
+
+SAMP_BEGIN
+
+typedef void(__cdecl* CMDPROC)(const char*);
+
+namespace Commands {
+
+	CMDPROC Default();
+	CMDPROC TestDeathWindow();
+	CMDPROC ToggleCameraTargetLabels();
+	CMDPROC SetChatPageSize();
+	CMDPROC SetChatFontSize();
+	CMDPROC DrawNameTagStatus();
+	CMDPROC DrawChatTimestamps();
+	CMDPROC ToggleAudioStreamMessages();
+	CMDPROC ToggleURLMessages();
+	CMDPROC PrintMemory();
+	CMDPROC SetFrameLimiter();
+	CMDPROC ToggleHeadMoves();
+	CMDPROC Quit();
+	CMDPROC CmpStat();
+	CMDPROC SavePosition();
+	CMDPROC SavePositionOnly();
+	CMDPROC PrintCurrentInterior();
+	CMDPROC ToggleObjectsLight();
+	CMDPROC ToggleDebugLabels();
+	CMDPROC SendRconCommand();
+
+	namespace Debug {
+
+		CMDPROC SetPlayerSkin();
+		CMDPROC CreateVehicle();
+		CMDPROC EnableVehicleSelection();
+		CMDPROC SetWorldWeather();
+		CMDPROC SetWorldTime();
+
+	}
+
+	void Setup();
+
+}
+
+SAMP_END
+
 #endif

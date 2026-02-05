@@ -77,4 +77,38 @@ BOOL SAMP::CActorPool::Create(ActorInfo * pInfo) {
 	return ((BOOL(__thiscall*)(CActorPool*, ActorInfo*))SAMP_ADDROF(0x18F0))(this, pInfo);
 }
 
+#elif defined(SAMP_DL)
+
+SAMP::CActorPool::CActorPool() {
+	((void(__thiscall*)(CActorPool*))SAMP_ADDROF(0x16C0))(this);
+}
+
+SAMP::CActorPool::~CActorPool() {
+	((void(__thiscall*)(CActorPool*))SAMP_ADDROF(0x18E0))(this);
+}
+
+SAMP::CActor* SAMP::CActorPool::GetObject(ID nId) {
+	return ((CActor * (__thiscall*)(CActorPool*, ID))SAMP_ADDROF(0x1615))(this, nId);
+}
+
+BOOL SAMP::CActorPool::DoesExist(ID nId) {
+	return ((BOOL(__thiscall*)(CActorPool*, ID))SAMP_ADDROF(0x1640))(this, nId);
+}
+
+void SAMP::CActorPool::UpdateLargestId() {
+	((void(__thiscall*)(CActorPool*))SAMP_ADDROF(0x1660))(this);
+}
+
+BOOL SAMP::CActorPool::Delete(ID nId) {
+	return ((BOOL(__thiscall*)(CActorPool*, ID))SAMP_ADDROF(0x16F0))(this, nId);
+}
+
+SAMP::ID SAMP::CActorPool::Find(::CPed * pGamePed) {
+	return ((ID(__thiscall*)(CActorPool*, ::CPed*))SAMP_ADDROF(0x18B0))(this, pGamePed);
+}
+
+BOOL SAMP::CActorPool::Create(ActorInfo * pInfo) {
+	return ((BOOL(__thiscall*)(CActorPool*, ActorInfo*))SAMP_ADDROF(0x1900))(this, pInfo);
+}
+
 #endif

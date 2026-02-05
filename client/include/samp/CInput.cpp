@@ -137,4 +137,68 @@ void SAMP::CInput::ProcessInput() {
 	((void(__thiscall*)(CInput*))SAMP_ADDROF(0x69260))(this);
 }
 
+#elif defined(SAMP_DL)
+
+SAMP::CInput*& SAMP::pInputBox() { return *(SAMP::CInput**)SAMP_ADDROF(0x2ACA14); }
+
+SAMP::CInput::CInput(IDirect3DDevice9* pDevice) {
+	((void(__thiscall*)(CInput*, IDirect3DDevice9*))SAMP_ADDROF(0x68E10))(this, pDevice);
+}
+
+void SAMP::CInput::GetRect(CRectSA* pRect) {
+	((void(__thiscall*)(CInput*, CRectSA*))SAMP_ADDROF(0x68E80))(this, pRect);
+}
+
+void SAMP::CInput::Open() {
+	((void(__thiscall*)(CInput*))SAMP_ADDROF(0x68EC0))(this);
+}
+
+void SAMP::CInput::Close() {
+	((void(__thiscall*)(CInput*))SAMP_ADDROF(0x68FC0))(this);
+}
+
+void SAMP::CInput::AddRecall(const char* szString) {
+	((void(__thiscall*)(CInput*, const char*))SAMP_ADDROF(0x69010))(this, szString);
+}
+
+void SAMP::CInput::RecallUp() {
+	((void(__thiscall*)(CInput*))SAMP_ADDROF(0x69070))(this);
+}
+
+void SAMP::CInput::RecallDown() {
+	((void(__thiscall*)(CInput*))SAMP_ADDROF(0x690E0))(this);
+}
+
+void SAMP::CInput::EnableCursor() {
+	((void(__thiscall*)(CInput*))SAMP_ADDROF(0x69130))(this);
+}
+
+SAMP::CMDPROC SAMP::CInput::GetCommandHandler(const char* szName) {
+	return ((CMDPROC(__thiscall*)(CInput*, const char*))SAMP_ADDROF(0x69150))(this, szName);
+}
+
+void SAMP::CInput::SetDefaultCommand(CMDPROC proc) {
+	((void(__thiscall*)(CInput*, CMDPROC))SAMP_ADDROF(0x691A0))(this, proc);
+}
+
+void SAMP::CInput::AddCommand(const char* szName, CMDPROC handler) {
+	((void(__thiscall*)(CInput*, const char*, CMDPROC))SAMP_ADDROF(0x691B0))(this, szName, handler);
+}
+
+BOOL SAMP::CInput::MsgProc(int uMsg, int wParam, int lParam) {
+	return ((BOOL(__thiscall*)(CInput*, int, int, int))SAMP_ADDROF(0x69210))(this, uMsg, wParam, lParam);
+}
+
+void SAMP::CInput::ResetDialogControls(CDXUTDialog* pGameUi) {
+	((void(__thiscall*)(CInput*, CDXUTDialog*))SAMP_ADDROF(0x69280))(this, pGameUi);
+}
+
+void SAMP::CInput::Send(const char* szString) {
+	((void(__thiscall*)(CInput*, const char*))SAMP_ADDROF(0x69340))(this, szString);
+}
+
+void SAMP::CInput::ProcessInput() {
+	((void(__thiscall*)(CInput*))SAMP_ADDROF(0x69410))(this);
+}
+
 #endif

@@ -29,4 +29,14 @@ SAMP::CPlayerInfo::~CPlayerInfo() {
 	((void(__thiscall*)(CPlayerInfo*))SAMP_ADDROF(0x13B60))(this);
 }
 
+#elif defined(SAMP_DL)
+
+SAMP::CPlayerInfo::CPlayerInfo(const char* szName, BOOL bIsNPC) {
+	((void(__thiscall*)(CPlayerInfo*, const char*, BOOL))SAMP_ADDROF(0x14060))(this, szName, bIsNPC);
+}
+
+SAMP::CPlayerInfo::~CPlayerInfo() {
+	((void(__thiscall*)(CPlayerInfo*))SAMP_ADDROF(0x13E10))(this);
+}
+
 #endif

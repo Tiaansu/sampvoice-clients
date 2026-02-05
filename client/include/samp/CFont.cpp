@@ -20,4 +20,15 @@ SAMP::CFont::CFont(ID3DXFont* pFont) {
 	m_pFont = pFont;
 }
 
+#elif defined(SAMP_DL)
+
+SAMP::CFont::CFont() {
+	((void(__thiscall*)(CFont*))SAMP_ADDROF(0x6B8D0))(this);
+}
+
+SAMP::CFont::CFont(ID3DXFont* pFont) {
+	*(void**)this = (void*)SAMP_ADDROF(0xEA410);
+	m_pFont = pFont;
+}
+
 #endif

@@ -23,7 +23,7 @@
 #include <util/Render.h>
 
 #if !defined(SAMP_RU) && !defined(SAMP_EN)
-#define SAMP_RU
+#define SAMP_EN
 #endif
 
 class PluginMenu {

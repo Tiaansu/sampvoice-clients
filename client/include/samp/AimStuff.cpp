@@ -193,4 +193,82 @@ SAMP::AimStuff::Aim* SAMP::AimStuff::GetAim(int nPlayer) {
 	return ((Aim * (__stdcall*)(int))SAMP_ADDROF(0x9C2E0))(nPlayer);
 }
 
+#elif defined(SAMP_DL)
+
+float& SAMP::AimStuff::fLocalPlayerCameraExtZoom() { return *(float*)SAMP_ADDROF(0x181E60); }
+float& SAMP::AimStuff::fLocalPlayerAspectRatio() { return *(float*)SAMP_ADDROF(0x184A18); }
+float*& SAMP::AimStuff::pInternalCameraExtZoom() { return *(float**)SAMP_ADDROF(0x1419BC); }
+float*& SAMP::AimStuff::pInternalAspectRatio() { return *(float**)SAMP_ADDROF(0x1419B8); }
+float* SAMP::AimStuff::aCameraExtZoom() { return (float*)SAMP_ADDROF(0x181F40); }
+float* SAMP::AimStuff::aAspectRatio() { return (float*)SAMP_ADDROF(0x184A48); }
+char* SAMP::AimStuff::aCameraMode() { return (char*)SAMP_ADDROF(0x181E68); }
+char*& SAMP::AimStuff::pInternalCameraMode() { return *(char**)SAMP_ADDROF(0x15195C); }
+SAMP::AimStuff::Aim& SAMP::AimStuff::localPlayerAim() { return *(SAMP::AimStuff::Aim*)SAMP_ADDROF(0x182288); }
+SAMP::AimStuff::Aim* SAMP::AimStuff::aPlayerAim() { return (SAMP::AimStuff::Aim*)SAMP_ADDROF(0x1822B8); }
+SAMP::AimStuff::Aim*& SAMP::AimStuff::pInternalAim() { return *(SAMP::AimStuff::Aim**)SAMP_ADDROF(0x1419B0); }
+
+void SAMP::AimStuff::UpdateCameraExtZoomAndAspectRatio() {
+	((void(__stdcall*)())SAMP_ADDROF(0x9C240))();
+}
+
+void SAMP::AimStuff::ApplyCameraExtZoomAndAspectRatio() {
+	((void(__stdcall*)())SAMP_ADDROF(0x9C260))();
+}
+
+void SAMP::AimStuff::SetCameraExtZoomAndAspectRatio(NUMBER nPlayer, float fCameraExtZoom, float fAspectRatio) {
+	((void(__stdcall*)(NUMBER, float, float))SAMP_ADDROF(0x9C280))(nPlayer, fCameraExtZoom, fAspectRatio);
+}
+
+float SAMP::AimStuff::GetAspectRatio() {
+	return ((float(__stdcall*)())SAMP_ADDROF(0x9C2A0))();
+}
+
+float SAMP::AimStuff::GetCameraExtZoom() {
+	return ((float(__stdcall*)())SAMP_ADDROF(0x9C2B0))();
+}
+
+void SAMP::AimStuff::ApplyCameraExtZoomAndAspectRatio(NUMBER nPlayer) {
+	((void(__stdcall*)(NUMBER))SAMP_ADDROF(0x9C2D0))(nPlayer);
+}
+
+void SAMP::AimStuff::SetCameraMode(char nMode, NUMBER nPlayer) {
+	((void(__stdcall*)(char, NUMBER))SAMP_ADDROF(0x9C310))(nMode, nPlayer);
+}
+
+char SAMP::AimStuff::GetCameraMode(NUMBER nPlayer) {
+	return ((char(__stdcall*)(NUMBER))SAMP_ADDROF(0x9C330))(nPlayer);
+}
+
+char SAMP::AimStuff::GetCameraMode() {
+	return ((char(__stdcall*)())SAMP_ADDROF(0x9C340))();
+}
+
+void SAMP::AimStuff::Initialize() {
+	((void(__stdcall*)())SAMP_ADDROF(0x9C350))();
+}
+
+void SAMP::AimStuff::UpdateAim() {
+	((void(__stdcall*)())SAMP_ADDROF(0x9C3C0))();
+}
+
+void SAMP::AimStuff::ApplyAim() {
+	((void(__stdcall*)())SAMP_ADDROF(0x9C3E0))();
+}
+
+SAMP::AimStuff::Aim* SAMP::AimStuff::GetAim() {
+	return ((Aim * (__stdcall*)())SAMP_ADDROF(0x9C400))();
+}
+
+void SAMP::AimStuff::SetAim(int nPlayer, const Aim * pAim) {
+	((void(__stdcall*)(int, const Aim*))SAMP_ADDROF(0x9C410))(nPlayer, pAim);
+}
+
+void SAMP::AimStuff::ApplyAim(int nPlayer) {
+	((void(__stdcall*)(int))SAMP_ADDROF(0x9C440))(nPlayer);
+}
+
+SAMP::AimStuff::Aim* SAMP::AimStuff::GetAim(int nPlayer) {
+	return ((Aim * (__stdcall*)(int))SAMP_ADDROF(0x9C470))(nPlayer);
+}
+
 #endif

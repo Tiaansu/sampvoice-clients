@@ -41,4 +41,20 @@ void SAMP::Settings::GetFromQuotes(const char* szLine, char* szBuffer) {
 	((void(__cdecl*)(const char*, char*))SAMP_ADDROF(0xC4750))(szLine, szBuffer);
 }
 
+#elif defined(SAMP_DL)
+
+SAMP::Settings& SAMP::settings() { return *(SAMP::Settings*)SAMP_ADDROF(0x2ABE78); }
+
+void SAMP::Settings::Initialize() {
+	((void(__cdecl*)())SAMP_ADDROF(0xC5C90))();
+}
+
+void SAMP::Settings::GetFromCommandLine(const char* szLine, char* szBuffer) {
+	((void(__cdecl*)(const char*, char*))SAMP_ADDROF(0xC5590))(szLine, szBuffer);
+}
+
+void SAMP::Settings::GetFromQuotes(const char* szLine, char* szBuffer) {
+	((void(__cdecl*)(const char*, char*))SAMP_ADDROF(0xC55E0))(szLine, szBuffer);
+}
+
 #endif

@@ -61,4 +61,29 @@ CObjectSelection*& pObjectSelection();
 
 SAMP_END
 
+#elif defined(SAMP_DL)
+
+SAMP_BEGIN
+
+class SAMP_API CObjectSelection {
+public:
+
+	BOOL	m_bIsActive;
+	ID		m_nHoveredObject;
+
+	CObjectSelection();
+
+	ID DefineObject();
+	void DrawLabels();
+	void Enable(BOOL bEnable);
+	void Draw();
+	void SendNotification(); // enter
+	BOOL MsgProc(int uMsg, int wParam, int lParam);
+
+};
+
+CObjectSelection*& pObjectSelection();
+
+SAMP_END
+
 #endif

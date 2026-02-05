@@ -75,4 +75,36 @@ CSpawnScreen*& pSpawnScreen();
 
 SAMP_END
 
+#elif defined(SAMP_DL)
+
+#include "CFonts.h"
+
+SAMP_BEGIN
+
+class SAMP_API CSpawnScreen {
+public:
+
+	BOOL					m_bEnabled;
+	char*					m_szSpawnText;
+	CFonts*					m_pFont;
+	IDirect3DDevice9*		m_pDevice;
+	IDirect3DTexture9*		m_pTexture;
+	IDirect3DStateBlock9*	m_pStateBlockSaved;
+	IDirect3DStateBlock9*	m_pStateBlockDraw;
+	ID3DXSprite*			m_pSprite;
+
+	CSpawnScreen(IDirect3DDevice9* pDevice);
+	~CSpawnScreen();
+
+	void SetText(const char* szString);
+	void OnResetDevice();
+	void OnLostDevice();
+	void Draw();
+
+};
+
+CSpawnScreen*& pSpawnScreen();
+
+SAMP_END
+
 #endif

@@ -21,4 +21,16 @@ void SAMP::CSrvNetStats::Draw() {
 	((void(__thiscall*)(CSrvNetStats*))SAMP_ADDROF(0x70B70))(this);
 }
 
+#elif defined(SAMP_DL)
+
+SAMP::CSrvNetStats*& SAMP::pServerNetStatistics() { return *(SAMP::CSrvNetStats**)SAMP_ADDROF(0x2ACA00); }
+
+SAMP::CSrvNetStats::CSrvNetStats(IDirect3DDevice9* pDevice) {
+	((void(__thiscall*)(CSrvNetStats*, IDirect3DDevice9*))SAMP_ADDROF(0x70CC0))(this, pDevice);
+}
+
+void SAMP::CSrvNetStats::Draw() {
+	((void(__thiscall*)(CSrvNetStats*))SAMP_ADDROF(0x70D00))(this);
+}
+
 #endif

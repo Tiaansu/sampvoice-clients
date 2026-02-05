@@ -85,4 +85,42 @@ void SAMP::GUI::ClassSelectionEventHandler(unsigned int nEvent, int nControlId, 
 	((void(__stdcall*)(unsigned int, int, CDXUTControl*, void*))SAMP_ADDROF(0xC5E30))(nEvent, nControlId, pControl, pUserContext);
 }
 
+#elif defined(SAMP_DL)
+
+CDXUTDialogResourceManager*& SAMP::GUI::pResourceMgr() { return *(CDXUTDialogResourceManager**)SAMP_ADDROF(0x2ACAB0); }
+CDXUTDialog*& SAMP::GUI::pGameUi() { return *(CDXUTDialog**)SAMP_ADDROF(0x2ACAB4); }
+CDXUTDialog*& SAMP::GUI::pScoreboard() { return *(CDXUTDialog**)SAMP_ADDROF(0x2ACAB8); }
+CDXUTDialog*& SAMP::GUI::pDialog() { return *(CDXUTDialog**)SAMP_ADDROF(0x2ACAC0); }
+CDXUTDialog*& SAMP::GUI::pClassSelection() { return *(CDXUTDialog**)SAMP_ADDROF(0x2ACABC); }
+IDirect3DSurface9*& SAMP::GUI::pCursor() { return *(IDirect3DSurface9**)SAMP_ADDROF(0x2ACACC); }
+IDirect3DDevice9*& SAMP::GUI::pDevice() { return *(IDirect3DDevice9**)SAMP_ADDROF(0x2AC9D0); }
+
+void SAMP::GUI::Initialize() {
+	((void(__cdecl*)())SAMP_ADDROF(0xC6CE0))();
+}
+
+void SAMP::GUI::OnLostDevice() {
+	((void(__cdecl*)())SAMP_ADDROF(0xC5620))();
+}
+
+void SAMP::GUI::OnResetDevice() {
+	((void(__cdecl*)())SAMP_ADDROF(0xC5880))();
+}
+
+void SAMP::GUI::GameUIEventHandler(unsigned int nEvent, int nControlId, CDXUTControl* pControl, void* pUserContext) {
+	((void(__stdcall*)(unsigned int, int, CDXUTControl*, void*))SAMP_ADDROF(0xC6BF0))(nEvent, nControlId, pControl, pUserContext);
+}
+
+void SAMP::GUI::ScoreboardEventHandler(unsigned int nEvent, int nControlId, CDXUTControl* pControl, void* pUserContext) {
+	((void(__stdcall*)(unsigned int, int, CDXUTControl*, void*))SAMP_ADDROF(0xC6C30))(nEvent, nControlId, pControl, pUserContext);
+}
+
+void SAMP::GUI::DialogEventHandler(unsigned int nEvent, int nControlId, CDXUTControl* pControl, void* pUserContext) {
+	((void(__stdcall*)(unsigned int, int, CDXUTControl*, void*))SAMP_ADDROF(0xC6B60))(nEvent, nControlId, pControl, pUserContext);
+}
+
+void SAMP::GUI::ClassSelectionEventHandler(unsigned int nEvent, int nControlId, CDXUTControl* pControl, void* pUserContext) {
+	((void(__stdcall*)(unsigned int, int, CDXUTControl*, void*))SAMP_ADDROF(0xC6C60))(nEvent, nControlId, pControl, pUserContext);
+}
+
 #endif

@@ -33,4 +33,16 @@ void SAMP::CNetStats::Draw() {
 	((void(__thiscall*)(CNetStats*))SAMP_ADDROF(0x605F0))(this);
 }
 
+#elif defined(SAMP_DL)
+
+SAMP::CNetStats*& SAMP::pNetStats() { return *(SAMP::CNetStats**)SAMP_ADDROF(0x2AC9FC); }
+
+SAMP::CNetStats::CNetStats(IDirect3DDevice9* pDevice) {
+	((void(__thiscall*)(CNetStats*, IDirect3DDevice9*))SAMP_ADDROF(0x607C0))(this, pDevice);
+}
+
+void SAMP::CNetStats::Draw() {
+	((void(__thiscall*)(CNetStats*))SAMP_ADDROF(0x607F0))(this);
+}
+
 #endif

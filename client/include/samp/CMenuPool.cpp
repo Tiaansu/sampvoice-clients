@@ -77,4 +77,38 @@ void SAMP::CMenuPool::Process() {
 	((void(__thiscall*)(CMenuPool*))SAMP_ADDROF(0x7E90))(this);
 }
 
+#elif defined(SAMP_DL)
+
+SAMP::CMenuPool::CMenuPool() {
+	((void(__thiscall*)(CMenuPool*))SAMP_ADDROF(0x7B40))(this);
+}
+
+SAMP::CMenuPool::~CMenuPool() {
+	((void(__thiscall*)(CMenuPool*))SAMP_ADDROF(0x7EB0))(this);
+}
+
+SAMP::CMenu* SAMP::CMenuPool::Create(NUMBER nId, const char* szTitle, float fX, float fY, char nColumns, float fFirstColumnWidth, float fSecondColumnWidth, const CMenu::Interaction* pInteraction) {
+	return ((CMenu * (__thiscall*)(CMenuPool*, NUMBER, const char*, float, float, char, float, float, const CMenu::Interaction*))SAMP_ADDROF(0x7B90))(this, nId, szTitle, fX, fY, nColumns, fFirstColumnWidth, fSecondColumnWidth, pInteraction);
+}
+
+BOOL SAMP::CMenuPool::Delete(NUMBER nId) {
+	return ((BOOL(__thiscall*)(CMenuPool*, NUMBER))SAMP_ADDROF(0x7C60))(this, nId);
+}
+
+void SAMP::CMenuPool::Show(NUMBER nId) {
+	((void(__thiscall*)(CMenuPool*, NUMBER))SAMP_ADDROF(0x7CB0))(this, nId);
+}
+
+void SAMP::CMenuPool::Hide(NUMBER nId) {
+	((void(__thiscall*)(CMenuPool*, NUMBER))SAMP_ADDROF(0x7D10))(this, nId);
+}
+
+char* SAMP::CMenuPool::GetTextPointer(const char* szName) {
+	return ((char* (__thiscall*)(CMenuPool*, const char*))SAMP_ADDROF(0x7D50))(this, szName);
+}
+
+void SAMP::CMenuPool::Process() {
+	((void(__thiscall*)(CMenuPool*))SAMP_ADDROF(0x7EF0))(this);
+}
+
 #endif

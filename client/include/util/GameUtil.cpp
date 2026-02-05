@@ -138,6 +138,9 @@ void GameUtil::DisableAntiCheat(const AddressesBase& addrBase)
 #elif defined(SAMP_R3)
         DefinePatch(0xC4DC0,  "\xB8\x45\x00\x00\x00\xC2\x1C\x00"),
         DefinePatch(0x9D1A0,  "\xC3")
+#elif defined(SAMP_DL)
+        DefinePatch(0xC5C10,  "\xB8\x45\x00\x00\x00\xC2\x1C\x00"),
+        DefinePatch(0x9D6F0,  "\xC3")
 #endif
 #undef  DefinePatch
     };

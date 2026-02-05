@@ -67,4 +67,32 @@ public:
 
 SAMP_END
 
+#elif defined(SAMP_DL)
+
+#include "CRemotePlayer.h"
+#include <string>
+
+SAMP_BEGIN
+
+class SAMP_API CPlayerInfo {
+public:
+
+	CRemotePlayer*	m_pPlayer;
+	int				m_nPing;
+#ifndef _DEBUG
+private:
+	int				__aling;
+public:
+#endif
+	std::string		m_szNick;
+	int				m_nScore;
+	BOOL			m_bIsNPC;
+
+	CPlayerInfo(const char* szName, BOOL bIsNPC);
+	~CPlayerInfo();
+
+};
+
+SAMP_END
+
 #endif

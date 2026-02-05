@@ -85,4 +85,42 @@ void SAMP::CMenu::Show() {
 	((void(__thiscall*)(CMenu*))SAMP_ADDROF(0xA6EB0))(this);
 }
 
+#elif defined(SAMP_DL)
+
+SAMP::CMenu::CMenu(const char* szTitle, float fX, float fY, char nColumns, float fFirstColumnWidth, float fSecondColumnWidth, const Interaction* pInteraction) {
+	((void(__thiscall*)(CMenu*, const char*, float, float, char, float, float, const Interaction*))SAMP_ADDROF(0xA7160))(this, szTitle, fX, fY, nColumns, fFirstColumnWidth, fSecondColumnWidth, pInteraction);
+}
+
+void SAMP::CMenu::AddItem(NUMBER nColumn, NUMBER nRow, const char* szText) {
+	((void(__thiscall*)(CMenu*, NUMBER, NUMBER, const char*))SAMP_ADDROF(0xA7200))(this, nColumn, nRow, szText);
+}
+
+void SAMP::CMenu::SetColumnTitle(NUMBER nColumn, const char* szText) {
+	((void(__thiscall*)(CMenu*, NUMBER, const char*))SAMP_ADDROF(0xA7230))(this, nColumn, szText);
+}
+
+void SAMP::CMenu::Hide() {
+	((void(__thiscall*)(CMenu*))SAMP_ADDROF(0xA7260))(this);
+}
+
+char* SAMP::CMenu::GetItem(NUMBER nColumn, NUMBER nRow) {
+	return ((char* (__thiscall*)(CMenu*, NUMBER, NUMBER))SAMP_ADDROF(0xA7280))(this, nColumn, nRow);
+}
+
+char* SAMP::CMenu::GetTitle() {
+	return ((char* (__thiscall*)(CMenu*))SAMP_ADDROF(0xA72A0))(this);
+}
+
+char* SAMP::CMenu::MS(NUMBER nColumn, NUMBER nRow) {
+	return ((char* (__thiscall*)(CMenu*, NUMBER, NUMBER))SAMP_ADDROF(0xA72D0))(this, nColumn, nRow);
+}
+
+char SAMP::CMenu::GetActiveRow() {
+	return ((char(__thiscall*)(CMenu*))SAMP_ADDROF(0xA7300))(this);
+}
+
+void SAMP::CMenu::Show() {
+	((void(__thiscall*)(CMenu*))SAMP_ADDROF(0xA7330))(this);
+}
+
 #endif

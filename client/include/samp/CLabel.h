@@ -67,4 +67,32 @@ CLabel*& pLabel();
 
 SAMP_END
 
+#elif defined(SAMP_DL)
+
+#include "CVectorSA.h"
+
+SAMP_BEGIN
+
+class SAMP_API CLabel {
+public:
+
+	IDirect3DDevice9*	m_pDevice;
+	ID3DXSprite*		m_pSprite;
+
+	CLabel(IDirect3DDevice9* pDevice);
+	~CLabel();
+
+	void OnLostDevice();
+	void OnResetDevice();
+	BOOL HasNoObstacles(CVectorSA position);
+	void Begin();
+	void End();
+	void Draw(CVectorSA* pPosition, const char* szText, D3DCOLOR color, BOOL bShadow, bool bNoObstacles);
+
+};
+
+CLabel*& pLabel();
+
+SAMP_END
+
 #endif

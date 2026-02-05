@@ -57,4 +57,38 @@ void SAMP::CAudio::Play(int nSound, CVectorSA location) {
 	((void(__thiscall*)(CAudio*, int, CVectorSA))SAMP_ADDROF(0xA1B90))(this, nSound, location);
 }
 
+#elif defined(SAMP_DL)
+
+int SAMP::CAudio::GetRadioStation() {
+	return ((int(__thiscall*)(CAudio*))SAMP_ADDROF(0xA2030))(this);
+}
+
+void SAMP::CAudio::StartRadio(int nStation) {
+	((void(__thiscall*)(CAudio*, int))SAMP_ADDROF(0xA2060))(this, nStation);
+}
+
+void SAMP::CAudio::StopRadio() {
+	((void(__thiscall*)(CAudio*))SAMP_ADDROF(0xA2260))(this);
+}
+
+float SAMP::CAudio::GetRadioVolume() {
+	return ((float(__thiscall*)(CAudio*))SAMP_ADDROF(0xA20A0))(this);
+}
+
+void SAMP::CAudio::StopOutdoorAmbienceTrack() {
+	((void(__thiscall*)(CAudio*))SAMP_ADDROF(0xA20B0))(this);
+}
+
+void SAMP::CAudio::SetOutdoorAmbienceTrack(int nSound) {
+	((void(__thiscall*)(CAudio*, int))SAMP_ADDROF(0xA20C0))(this, nSound);
+}
+
+bool SAMP::CAudio::IsOutdoorAmbienceTrackDisabled() {
+	return ((bool(__thiscall*)(CAudio*))SAMP_ADDROF(0xA21C0))(this);
+}
+
+void SAMP::CAudio::Play(int nSound, CVectorSA location) {
+	((void(__thiscall*)(CAudio*, int, CVectorSA))SAMP_ADDROF(0xA20E0))(this, nSound, location);
+}
+
 #endif

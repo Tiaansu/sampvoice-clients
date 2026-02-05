@@ -123,4 +123,62 @@ SAMP::CObjectSA* SAMP::CObjectPool::GetObject(ID nId) {
 	return ((CObjectSA * (__thiscall*)(CObjectPool*, ID))SAMP_ADDROF(0x2DC0))(this, nId);
 }
 
+#elif defined(SAMP_DL)
+
+SAMP::CObjectPool::CObjectPool() {
+	((void(__thiscall*)(CObjectPool*))SAMP_ADDROF(0x12700))(this);
+}
+
+SAMP::CObjectPool::~CObjectPool() {
+	((void(__thiscall*)(CObjectPool*))SAMP_ADDROF(0x13060))(this);
+}
+
+void SAMP::CObjectPool::UpdateLargestId() {
+	((void(__thiscall*)(CObjectPool*))SAMP_ADDROF(0x126A0))(this);
+}
+
+int SAMP::CObjectPool::GetCount() {
+	return ((int(__thiscall*)(CObjectPool*))SAMP_ADDROF(0x12730))(this);
+}
+
+BOOL SAMP::CObjectPool::Delete(ID nId) {
+	return ((BOOL(__thiscall*)(CObjectPool*, ID))SAMP_ADDROF(0x12750))(this, nId);
+}
+
+BOOL SAMP::CObjectPool::Create(ID nId, int nModel, CVectorSA position, CVectorSA rotation, float fDrawDistance) {
+	return ((BOOL(__thiscall*)(CObjectPool*, ID, int, CVectorSA, CVectorSA, float))SAMP_ADDROF(0x127D0))(this, nId, nModel, position, rotation, fDrawDistance);
+}
+
+SAMP::CObjectSA* SAMP::CObjectPool::Find(::CObject* pGameObject) {
+	return ((CObjectSA * (__thiscall*)(CObjectPool*, ::CObject*))SAMP_ADDROF(0x128D0))(this, pGameObject);
+}
+
+int SAMP::CObjectPool::GetId(::CObject* pGameObject) {
+	return ((int(__thiscall*)(CObjectPool*, ::CObject*))SAMP_ADDROF(0x12910))(this, pGameObject);
+}
+
+void SAMP::CObjectPool::Process() {
+	((void(__thiscall*)(CObjectPool*))SAMP_ADDROF(0x12950))(this);
+}
+
+void SAMP::CObjectPool::ConstructMaterials() {
+	((void(__thiscall*)(CObjectPool*))SAMP_ADDROF(0x12A10))(this);
+}
+
+void SAMP::CObjectPool::ShutdownMaterials() {
+	((void(__thiscall*)(CObjectPool*))SAMP_ADDROF(0x12A50))(this);
+}
+
+void SAMP::CObjectPool::Draw() {
+	((void(__thiscall*)(CObjectPool*))SAMP_ADDROF(0x12A90))(this);
+}
+
+void SAMP::CObjectPool::DrawLast() {
+	((void(__thiscall*)(CObjectPool*))SAMP_ADDROF(0x12AD0))(this);
+}
+
+SAMP::CObjectSA* SAMP::CObjectPool::GetObject(ID nId) {
+	return ((CObjectSA * (__thiscall*)(CObjectPool*, ID))SAMP_ADDROF(0x2E10))(this, nId);
+}
+
 #endif

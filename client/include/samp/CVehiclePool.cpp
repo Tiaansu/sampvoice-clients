@@ -173,4 +173,86 @@ BOOL SAMP::CVehiclePool::DoesExit(ID nId) {
 	return ((BOOL(__thiscall*)(CVehiclePool*, ID))SAMP_ADDROF(0x1140))(this, nId);
 }
 
+#elif defined(SAMP_DL)
+
+SAMP::CVehiclePool::CVehiclePool() {
+	((void(__thiscall*)(CVehiclePool*))SAMP_ADDROF(0x1E4D0))(this);
+}
+
+SAMP::CVehiclePool::~CVehiclePool() {
+	((void(__thiscall*)(CVehiclePool*))SAMP_ADDROF(0x1EB20))(this);
+}
+
+void SAMP::CVehiclePool::UpdateCount() {
+	((void(__thiscall*)(CVehiclePool*))SAMP_ADDROF(0x1E470))(this);
+}
+
+BOOL SAMP::CVehiclePool::Delete(ID nId) {
+	return ((BOOL(__thiscall*)(CVehiclePool*, ID))SAMP_ADDROF(0x1E540))(this, nId);
+}
+
+void SAMP::CVehiclePool::ChangeInterior(ID nId, int nInteriorId) {
+	((void(__thiscall*)(CVehiclePool*, ID, int))SAMP_ADDROF(0x1E5C0))(this, nId, nInteriorId);
+}
+
+void SAMP::CVehiclePool::SetParams(ID nId, bool bIsObjective, bool bIsLocked) {
+	((void(__thiscall*)(CVehiclePool*, ID, bool, bool))SAMP_ADDROF(0x1E5F0))(this, nId, bIsObjective, bIsLocked);
+}
+
+SAMP::ID SAMP::CVehiclePool::Find(::CVehicle* pGameObject) {
+	return ((ID(__thiscall*)(CVehiclePool*, ::CVehicle*))SAMP_ADDROF(0x1E650))(this, pGameObject);
+}
+
+SAMP::GTAREF SAMP::CVehiclePool::GetRef(int nId) {
+	return ((GTAREF(__thiscall*)(CVehiclePool*, int))SAMP_ADDROF(0x1E680))(this, nId);
+}
+
+SAMP::GTAREF SAMP::CVehiclePool::GetRef(::CVehicle* pGameObject) {
+	return ((GTAREF(__thiscall*)(CVehiclePool*, ::CVehicle*))SAMP_ADDROF(0x1E6A0))(this, pGameObject);
+}
+
+SAMP::ID SAMP::CVehiclePool::GetNearest() {
+	return ((ID(__thiscall*)(CVehiclePool*))SAMP_ADDROF(0x1E6C0))(this);
+}
+
+SAMP::ID SAMP::CVehiclePool::GetNearest(CVectorSA point) {
+	return ((ID(__thiscall*)(CVehiclePool*, CVectorSA))SAMP_ADDROF(0x1E730))(this, point);
+}
+
+void SAMP::CVehiclePool::AddToWaitingList(const Info* pInfo) {
+	((void(__thiscall*)(CVehiclePool*, const Info*))SAMP_ADDROF(0x1E7D0))(this, pInfo);
+}
+
+void SAMP::CVehiclePool::ConstructLicensePlates() {
+	((void(__thiscall*)(CVehiclePool*))SAMP_ADDROF(0x1E830))(this);
+}
+
+void SAMP::CVehiclePool::ShutdownLicensePlates() {
+	((void(__thiscall*)(CVehiclePool*))SAMP_ADDROF(0x1E8A0))(this);
+}
+
+BOOL SAMP::CVehiclePool::Create(Info* pInfo) {
+	return ((BOOL(__thiscall*)(CVehiclePool*, Info*))SAMP_ADDROF(0x1EB40))(this, pInfo);
+}
+
+void SAMP::CVehiclePool::SendDestroyNotification(ID nId) {
+	((void(__thiscall*)(CVehiclePool*, ID))SAMP_ADDROF(0x1ECF0))(this, nId);
+}
+
+void SAMP::CVehiclePool::ProcessWaitingList() {
+	((void(__thiscall*)(CVehiclePool*))SAMP_ADDROF(0x1EDC0))(this);
+}
+
+void SAMP::CVehiclePool::Process() {
+	((void(__thiscall*)(CVehiclePool*))SAMP_ADDROF(0x1EE80))(this);
+}
+
+SAMP::CVehicleSA* SAMP::CVehiclePool::GetObject(ID nId) {
+	return ((CVehicleSA * (__thiscall*)(CVehiclePool*, ID))SAMP_ADDROF(0x1120))(this, nId);
+}
+
+BOOL SAMP::CVehiclePool::DoesExit(ID nId) {
+	return ((BOOL(__thiscall*)(CVehiclePool*, ID))SAMP_ADDROF(0x1150))(this, nId);
+}
+
 #endif

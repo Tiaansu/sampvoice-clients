@@ -21,4 +21,17 @@ void SAMP::CHelpDialog::Show() {
 	((void(__thiscall*)(CHelpDialog*))SAMP_ADDROF(0x6B3C0))(this);
 }
 
+#elif defined(SAMP_DL)
+
+SAMP::CHelpDialog*& SAMP::pHelpDialog() { return *(SAMP::CHelpDialog**)SAMP_ADDROF(0x2ACA04); }
+
+SAMP::CHelpDialog::CHelpDialog(IDirect3DDevice9* pDevice) {
+	((void(__thiscall*)(CHelpDialog*, IDirect3DDevice9*))SAMP_ADDROF(0x6B566))(this, pDevice);
+}
+
+void SAMP::CHelpDialog::Show() {
+	((void(__thiscall*)(CHelpDialog*))SAMP_ADDROF(0x6B570))(this);
+}
+
+
 #endif

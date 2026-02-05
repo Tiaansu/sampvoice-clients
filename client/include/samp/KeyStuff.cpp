@@ -109,4 +109,54 @@ void SAMP::KeyStuff::ResetInternalKeys() {
 	((void(__cdecl*)())SAMP_ADDROF(0xA6CC0))();
 }
 
+#elif defined(SAMP_DL)
+
+CPad* SAMP::KeyStuff::pLocalPlayerKeys() { return (CPad*)SAMP_ADDROF(0x190660); }
+CPad* SAMP::KeyStuff::aPlayerKeys() { return (CPad*)SAMP_ADDROF(0x190798); }
+CPad*& SAMP::KeyStuff::pInternalKeys() { return *(CPad**)SAMP_ADDROF(0x152AC0); }
+bool*& SAMP::KeyStuff::pDriveByLeft() { return *(bool**)SAMP_ADDROF(0x152AC4); }
+bool*& SAMP::KeyStuff::pDriveByRight() { return *(bool**)SAMP_ADDROF(0x152AC8); }
+bool& SAMP::KeyStuff::bSavedDriveByLeft() { return *(bool*)SAMP_ADDROF(0x1A0440); }
+bool& SAMP::KeyStuff::bSavedDriveByRight() { return *(bool*)SAMP_ADDROF(0x1A0441); }
+
+void SAMP::KeyStuff::Initialize() {
+	((void(__cdecl*)())SAMP_ADDROF(0xA6FE0))();
+}
+
+void SAMP::KeyStuff::UpdateKeys() {
+	((void(__cdecl*)())SAMP_ADDROF(0xA7000))();
+}
+
+void SAMP::KeyStuff::ApplyKeys() {
+	((void(__cdecl*)())SAMP_ADDROF(0xA7040))();
+}
+
+void SAMP::KeyStuff::SetKeys(int nPlayer, const CPad* pKeys) {
+	((void(__cdecl*)(int, const CPad*))SAMP_ADDROF(0xA7080))(nPlayer, pKeys);
+}
+
+void SAMP::KeyStuff::ApplyKeys(int nPlayer) {
+	((void(__cdecl*)(int))SAMP_ADDROF(0xA70A0))(nPlayer);
+}
+
+CPad* SAMP::KeyStuff::GetInternalKeys() {
+	return ((::CPad * (__cdecl*)())SAMP_ADDROF(0xA70F0))();
+}
+
+CPad* SAMP::KeyStuff::GetKeys() {
+	return ((::CPad * (__cdecl*)())SAMP_ADDROF(0xA7100))();
+}
+
+CPad* SAMP::KeyStuff::GetKeys(int nPlayer) {
+	return ((::CPad * (__cdecl*)(int))SAMP_ADDROF(0xA7110))(nPlayer);
+}
+
+void SAMP::KeyStuff::ResetKeys(int nPlayer) {
+	((void(__cdecl*)(int))SAMP_ADDROF(0xA7120))(nPlayer);
+}
+
+void SAMP::KeyStuff::ResetInternalKeys() {
+	((void(__cdecl*)())SAMP_ADDROF(0xA7140))();
+}
+
 #endif

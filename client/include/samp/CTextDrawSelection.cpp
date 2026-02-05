@@ -73,4 +73,36 @@ BOOL SAMP::CTextDrawSelection::MsgProc(int uMsg, int wParam, int lParam) {
 	return ((BOOL(__thiscall*)(CTextDrawSelection*, int, int, int))SAMP_ADDROF(0x70E80))(this, uMsg, wParam, lParam);
 }
 
+#elif defined(SAMP_DL)
+
+SAMP::CTextDrawSelection*& SAMP::pTextDrawSelection() { return *(SAMP::CTextDrawSelection**)SAMP_ADDROF(0x2AC9F8); }
+
+void SAMP::CTextDrawSelection::ResetTextDraws() {
+	((void(__thiscall*)(CTextDrawSelection*))SAMP_ADDROF(0x70D50))(this);
+}
+
+void SAMP::CTextDrawSelection::RawProcess() {
+	((void(__thiscall*)(CTextDrawSelection*))SAMP_ADDROF(0x70DB0))(this);
+}
+
+void SAMP::CTextDrawSelection::Process() {
+	((void(__thiscall*)(CTextDrawSelection*))SAMP_ADDROF(0x70EB0))(this);
+}
+
+void SAMP::CTextDrawSelection::Enable(D3DCOLOR hoveredColor) {
+	((void(__thiscall*)(CTextDrawSelection*, D3DCOLOR))SAMP_ADDROF(0x70EE0))(this, hoveredColor);
+}
+
+void SAMP::CTextDrawSelection::SendNotification() {
+	((void(__thiscall*)(CTextDrawSelection*))SAMP_ADDROF(0x70F20))(this);
+}
+
+void SAMP::CTextDrawSelection::Disable() {
+	((void(__thiscall*)(CTextDrawSelection*))SAMP_ADDROF(0x70FC0))(this);
+}
+
+BOOL SAMP::CTextDrawSelection::MsgProc(int uMsg, int wParam, int lParam) {
+	return ((BOOL(__thiscall*)(CTextDrawSelection*, int, int, int))SAMP_ADDROF(0x71010))(this, uMsg, wParam, lParam);
+}
+
 #endif

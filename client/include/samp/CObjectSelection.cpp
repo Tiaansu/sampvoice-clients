@@ -73,4 +73,36 @@ BOOL SAMP::CObjectSelection::MsgProc(int uMsg, int wParam, int lParam) {
 	return ((BOOL(__thiscall*)(CObjectSelection*, int, int, int))SAMP_ADDROF(0x6D6D0))(this, uMsg, wParam, lParam);
 }
 
+#elif defined(SAMP_DL)
+
+SAMP::CObjectSelection*& SAMP::pObjectSelection() { return *(SAMP::CObjectSelection**)SAMP_ADDROF(0x2AC9F4); }
+
+SAMP::CObjectSelection::CObjectSelection() {
+	((void(__thiscall*)(CObjectSelection*))SAMP_ADDROF(0x6D440))(this);
+}
+
+SAMP::ID SAMP::CObjectSelection::DefineObject() {
+	return ((ID(__thiscall*)(CObjectSelection*))SAMP_ADDROF(0x6D450))(this);
+}
+
+void SAMP::CObjectSelection::DrawLabels() {
+	((void(__thiscall*)(CObjectSelection*))SAMP_ADDROF(0x6D4A0))(this);
+}
+
+void SAMP::CObjectSelection::Enable(BOOL bEnable) {
+	((void(__thiscall*)(CObjectSelection*, BOOL))SAMP_ADDROF(0x6D5C0))(this, bEnable);
+}
+
+void SAMP::CObjectSelection::Draw() {
+	((void(__thiscall*)(CObjectSelection*))SAMP_ADDROF(0x6D640))(this);
+}
+
+void SAMP::CObjectSelection::SendNotification() {
+	((void(__thiscall*)(CObjectSelection*))SAMP_ADDROF(0x6D710))(this);
+}
+
+BOOL SAMP::CObjectSelection::MsgProc(int uMsg, int wParam, int lParam) {
+	return ((BOOL(__thiscall*)(CObjectSelection*, int, int, int))SAMP_ADDROF(0x6D880))(this, uMsg, wParam, lParam);
+}
+
 #endif

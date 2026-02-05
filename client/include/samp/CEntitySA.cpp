@@ -257,4 +257,123 @@ void SAMP::CEntitySA::SetCollisionProcessed(BOOL bProcessed) {
 	((void(__thiscall*)(CEntitySA*, BOOL))SAMP_ADDROF(0x9EF70))(this, bProcessed);
 }
 
+#elif defined(SAMP_DL)
+
+SAMP::CEntitySA::CEntitySA() {
+	((void(__thiscall*)(CEntitySA*))SAMP_ADDROF(0x9BCE0))(this);
+}
+
+void SAMP::CEntitySA::GetMatrix(CMatrixSA* pMatrix) {
+	((void(__thiscall*)(CEntitySA*, CMatrixSA*))SAMP_ADDROF(0x9E950))(this, pMatrix);
+}
+
+void SAMP::CEntitySA::SetMatrix(CMatrixSA matrix) {
+	((void(__thiscall*)(CEntitySA*, CMatrixSA))SAMP_ADDROF(0x9EA00))(this, matrix);
+}
+
+void SAMP::CEntitySA::GetSpeed(CVectorSA* pVec) {
+	((void(__thiscall*)(CEntitySA*, CVectorSA*))SAMP_ADDROF(0x9EB20))(this, pVec);
+}
+
+void SAMP::CEntitySA::SetSpeed(CVectorSA vec) {
+	((void(__thiscall*)(CEntitySA*, CVectorSA))SAMP_ADDROF(0x9EB50))(this, vec);
+}
+
+void SAMP::CEntitySA::GetTurnSpeed(CVectorSA* pVec) {
+	((void(__thiscall*)(CEntitySA*, CVectorSA*))SAMP_ADDROF(0x9EC70))(this, pVec);
+}
+
+void SAMP::CEntitySA::SetTurnSpeed(CVectorSA vec) {
+	((void(__thiscall*)(CEntitySA*, CVectorSA))SAMP_ADDROF(0x9ECA0))(this, vec);
+}
+
+void SAMP::CEntitySA::ApplyTurnSpeed() {
+	((void(__thiscall*)(CEntitySA*))SAMP_ADDROF(0x9ECD0))(this);
+}
+
+float SAMP::CEntitySA::GetDistanceFromCentreOfMassToBaseOfModel() {
+	return ((float(__thiscall*)(CEntitySA*))SAMP_ADDROF(0x9ECF0))(this);
+}
+
+void SAMP::CEntitySA::GetBoundCentre(CVectorSA* pVec) {
+	((void(__thiscall*)(CEntitySA*, CVectorSA*))SAMP_ADDROF(0x9ED30))(this, pVec);
+}
+
+void SAMP::CEntitySA::SetModelIndex(int nModel) {
+	((void(__thiscall*)(CEntitySA*, int))SAMP_ADDROF(0x9ED90))(this, nModel);
+}
+
+int SAMP::CEntitySA::GetModelIndex() {
+	return ((int(__thiscall*)(CEntitySA*))SAMP_ADDROF(0x9EE70))(this);
+}
+
+void SAMP::CEntitySA::Teleport(CVectorSA position) {
+	((void(__thiscall*)(CEntitySA*, CVectorSA))SAMP_ADDROF(0x9EE80))(this, position);
+}
+
+float SAMP::CEntitySA::GetDistanceToLocalPlayer() {
+	return ((float(__thiscall*)(CEntitySA*))SAMP_ADDROF(0x9EF00))(this);
+}
+
+float SAMP::CEntitySA::GetDistanceToCamera() {
+	return ((float(__thiscall*)(CEntitySA*))SAMP_ADDROF(0x9EFD0))(this);
+}
+
+float SAMP::CEntitySA::GetDistanceToPoint(CVectorSA position) {
+	return ((float(__thiscall*)(CEntitySA*, CVectorSA))SAMP_ADDROF(0x9F0F0))(this, position);
+}
+
+BOOL SAMP::CEntitySA::DoesExist() {
+	return ((BOOL(__thiscall*)(CEntitySA*))SAMP_ADDROF(0x9F210))(this);
+}
+
+BOOL SAMP::CEntitySA::EnforceWorldBoundries(float fPX, float fZX, float fPY, float fNY) {
+	return ((BOOL(__thiscall*)(CEntitySA*, float, float, float, float))SAMP_ADDROF(0x9F260))(this, fPX, fZX, fPY, fNY);
+}
+
+BOOL SAMP::CEntitySA::HasExceededWorldBoundries(float fPX, float fZX, float fPY, float fNY) {
+	return ((BOOL(__thiscall*)(CEntitySA*, float, float, float, float))SAMP_ADDROF(0x9F400))(this, fPX, fZX, fPY, fNY);
+}
+
+void SAMP::CEntitySA::GetEulerInverted(float* x, float* y, float* z) {
+	((void(__thiscall*)(CEntitySA*, float*, float*, float*))SAMP_ADDROF(0x9F730))(this, x, y, z);
+}
+
+BOOL SAMP::CEntitySA::IsIgnored() {
+	return ((BOOL(__thiscall*)(CEntitySA*))SAMP_ADDROF(0x9FB20))(this);
+}
+
+BOOL SAMP::CEntitySA::IsStationary() {
+	return ((BOOL(__thiscall*)(CEntitySA*))SAMP_ADDROF(0x9FC20))(this);
+}
+
+BOOL SAMP::CEntitySA::GetCollisionFlag() {
+	return ((BOOL(__thiscall*)(CEntitySA*))SAMP_ADDROF(0x9F4A0))(this);
+}
+
+void SAMP::CEntitySA::SetCollisionFlag(BOOL bEnable) {
+	((void(__thiscall*)(CEntitySA*, BOOL))SAMP_ADDROF(0x9F470))(this, bEnable);
+}
+
+RwObject* SAMP::CEntitySA::GetRwObject() {
+	return ((::RwObject * (__thiscall*)(CEntitySA*))SAMP_ADDROF(0x9F8A0))(this);
+}
+
+void SAMP::CEntitySA::DeleteRwObject() {
+	((void(__thiscall*)(CEntitySA*))SAMP_ADDROF(0x9F9F0))(this);
+}
+
+void SAMP::CEntitySA::UpdateRwFrame() {
+	((void(__thiscall*)(CEntitySA*))SAMP_ADDROF(0x9EAC0))(this);
+}
+
+float SAMP::CEntitySA::GetDistanceToLocalPlayerNoHeight() {
+	return ((float(__thiscall*)(CEntitySA*))SAMP_ADDROF(0x9F030))(this);
+}
+
+void SAMP::CEntitySA::SetCollisionProcessed(BOOL bProcessed) {
+	((void(__thiscall*)(CEntitySA*, BOOL))SAMP_ADDROF(0x9F4C0))(this, bProcessed);
+}
+
+
 #endif

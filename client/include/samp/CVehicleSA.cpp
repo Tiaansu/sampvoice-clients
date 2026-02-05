@@ -477,4 +477,238 @@ void SAMP::CVehicleSA::EnableEngine(BOOL bEnable) {
 	((void(__thiscall*)(CVehicleSA*, BOOL))SAMP_ADDROF(0xB81D0))(this, bEnable);
 }
 
+#elif defined(SAMP_DL)
+
+SAMP::CVehicleSA::CVehicleSA(int nModel, CVectorSA position, float fRotation, BOOL bKeepModelLoaded, BOOL bHasSiren) {
+	((void(__thiscall*)(CVehicleSA*, int, CVectorSA, float, BOOL, BOOL))SAMP_ADDROF(0xB7F00))(this, nModel, position, fRotation, bKeepModelLoaded, bHasSiren);
+}
+
+void SAMP::CVehicleSA::ChangeInterior(int nId) {
+	((void(__thiscall*)(CVehicleSA*, int))SAMP_ADDROF(0xB6BD0))(this, nId);
+}
+
+void SAMP::CVehicleSA::ResetPointers() {
+	((void(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB6C00))(this);
+}
+
+BOOL SAMP::CVehicleSA::HasDriver() {
+	return ((BOOL(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB6C20))(this);
+}
+
+BOOL SAMP::CVehicleSA::IsOccupied() {
+	return ((BOOL(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB6C70))(this);
+}
+
+void SAMP::CVehicleSA::SetInvulnerable(BOOL bInv) {
+	((void(__thiscall*)(CVehicleSA*, BOOL))SAMP_ADDROF(0xB6CD0))(this, bInv);
+}
+
+void SAMP::CVehicleSA::SetLocked(BOOL bLock) {
+	((void(__thiscall*)(CVehicleSA*, BOOL))SAMP_ADDROF(0xB6D70))(this, bLock);
+}
+
+float SAMP::CVehicleSA::GetHealth() {
+	return ((float(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB6DE0))(this);
+}
+
+void SAMP::CVehicleSA::SetHealth(float fValue) {
+	((void(__thiscall*)(CVehicleSA*, float))SAMP_ADDROF(0xB6E00))(this, fValue);
+}
+
+void SAMP::CVehicleSA::SetColor(NUMBER nPrimary, NUMBER nSecondary) {
+	((void(__thiscall*)(CVehicleSA*, NUMBER, NUMBER))SAMP_ADDROF(0xB6E20))(this, nPrimary, nSecondary);
+}
+
+void SAMP::CVehicleSA::UpdateColor() {
+	((void(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB6E70))(this);
+}
+
+int SAMP::CVehicleSA::GetSubtype() {
+	return ((int(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB6ED0))(this);
+}
+
+BOOL SAMP::CVehicleSA::IsSunk() {
+	return ((BOOL(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB6EF0))(this);
+}
+
+BOOL SAMP::CVehicleSA::IsWrecked() {
+	return ((BOOL(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB6F10))(this);
+}
+
+BOOL SAMP::CVehicleSA::DriverIsPlayerPed() {
+	return ((BOOL(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB6F30))(this);
+}
+
+BOOL SAMP::CVehicleSA::HasPlayerPed() {
+	return ((BOOL(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB6F60))(this);
+}
+
+BOOL SAMP::CVehicleSA::IsTrainPart() {
+	return ((BOOL(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB6FA0))(this);
+}
+
+BOOL SAMP::CVehicleSA::HasTurret() {
+	return ((BOOL(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB6FE0))(this);
+}
+
+void SAMP::CVehicleSA::EnableSiren(bool bEnable) {
+	((void(__thiscall*)(CVehicleSA*, bool))SAMP_ADDROF(0xB7080))(this, bEnable);
+}
+
+BOOL SAMP::CVehicleSA::SirenEnabled() {
+	return ((BOOL(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB70A0))(this);
+}
+
+void SAMP::CVehicleSA::SetLandingGearState(BOOL bHide) {
+	((void(__thiscall*)(CVehicleSA*, BOOL))SAMP_ADDROF(0xB70E0))(this, bHide);
+}
+
+BOOL SAMP::CVehicleSA::GetLandingGearState() {
+	return ((BOOL(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB7170))(this);
+}
+
+void SAMP::CVehicleSA::SetHydraThrusters(int nDirection) {
+	((void(__thiscall*)(CVehicleSA*, int))SAMP_ADDROF(0xB71E0))(this, nDirection);
+}
+
+int SAMP::CVehicleSA::GetHydraThrusters() {
+	return ((int(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB7200))(this);
+}
+
+void SAMP::CVehicleSA::ProcessMarkers() {
+	((void(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB7220))(this);
+}
+
+void SAMP::CVehicleSA::Lock(BOOL bLock) {
+	((void(__thiscall*)(CVehicleSA*, BOOL))SAMP_ADDROF(0xB7380))(this, bLock);
+}
+
+BOOL SAMP::CVehicleSA::UpdateLastDrivenTime() {
+	return ((BOOL(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB73B0))(this);
+}
+
+float SAMP::CVehicleSA::GetTrainSpeed() {
+	return ((float(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB7420))(this);
+}
+
+void SAMP::CVehicleSA::SetTrainSpeed(float fValue) {
+	((void(__thiscall*)(CVehicleSA*, float))SAMP_ADDROF(0xB7440))(this, fValue);
+}
+
+void SAMP::CVehicleSA::SetTires(char nState) {
+	((void(__thiscall*)(CVehicleSA*, char))SAMP_ADDROF(0xB7480))(this, nState);
+}
+
+char SAMP::CVehicleSA::GetTires() {
+	return ((char(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB7570))(this);
+}
+
+void SAMP::CVehicleSA::UpdateDamage(int nPanels, int nDoors, char nLights) {
+	((void(__thiscall*)(CVehicleSA*, int, int, char))SAMP_ADDROF(0xB7600))(this, nPanels, nDoors, nLights);
+}
+
+int SAMP::CVehicleSA::GetPanelsDamage() {
+	return ((int(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB76C0))(this);
+}
+
+int SAMP::CVehicleSA::GetDoorsDamage() {
+	return ((int(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB76F0))(this);
+}
+
+char SAMP::CVehicleSA::GetLightsDamage() {
+	return ((char(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB7720))(this);
+}
+
+void SAMP::CVehicleSA::AttachTrailer() {
+	((void(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB7750))(this);
+}
+
+void SAMP::CVehicleSA::DetachTrailer() {
+	((void(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB7770))(this);
+}
+
+void SAMP::CVehicleSA::SetTrailer(CVehicleSA* pVehicle) {
+	((void(__thiscall*)(CVehicleSA*, CVehicleSA*))SAMP_ADDROF(0xB77C0))(this, pVehicle);
+}
+
+SAMP::CVehicleSA* SAMP::CVehicleSA::GetTrailer() {
+	return ((CVehicleSA * (__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB77D0))(this);
+}
+
+SAMP::CVehicleSA* SAMP::CVehicleSA::GetTractor() {
+	return ((CVehicleSA * (__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB7830))(this);
+}
+
+BOOL SAMP::CVehicleSA::IsTrailer() {
+	return ((BOOL(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB78B0))(this);
+}
+
+BOOL SAMP::CVehicleSA::IsTowtruck() {
+	return ((BOOL(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB7910))(this);
+}
+
+BOOL SAMP::CVehicleSA::IsRC() {
+	return ((BOOL(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB7940))(this);
+}
+
+void SAMP::CVehicleSA::EnableLights(bool bEnable) {
+	((void(__thiscall*)(CVehicleSA*, bool))SAMP_ADDROF(0xB7990))(this, bEnable);
+}
+
+void SAMP::CVehicleSA::RemovePassengers() {
+	((void(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB7A20))(this);
+}
+
+BOOL SAMP::CVehicleSA::AddComponent(unsigned short nId) {
+	return ((BOOL(__thiscall*)(CVehicleSA*, unsigned short))SAMP_ADDROF(0xB7B00))(this, nId);
+}
+
+BOOL SAMP::CVehicleSA::RemoveComponent(unsigned short nId) {
+	return ((BOOL(__thiscall*)(CVehicleSA*, unsigned short))SAMP_ADDROF(0xB7BE0))(this, nId);
+}
+
+void SAMP::CVehicleSA::SetPaintjob(NUMBER nId) {
+	((void(__thiscall*)(CVehicleSA*, NUMBER))SAMP_ADDROF(0xB7C20))(this, nId);
+}
+
+BOOL SAMP::CVehicleSA::DoesExist() {
+	return ((BOOL(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB7C70))(this);
+}
+
+void SAMP::CVehicleSA::SetLicensePlateText(const char* szText) {
+	((void(__thiscall*)(CVehicleSA*, const char*))SAMP_ADDROF(0xB7C80))(this, szText);
+}
+
+void SAMP::CVehicleSA::SetRotation(float fValue) {
+	((void(__thiscall*)(CVehicleSA*, float))SAMP_ADDROF(0xB7CA0))(this, fValue);
+}
+
+void SAMP::CVehicleSA::ConstructLicensePlate() {
+	((void(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB7CD0))(this);
+}
+
+void SAMP::CVehicleSA::ShutdownLicensePlate() {
+	((void(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB7D20))(this);
+}
+
+BOOL SAMP::CVehicleSA::HasSiren() {
+	return ((BOOL(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB7E60))(this);
+}
+
+char SAMP::CVehicleSA::GetMaxPassengers() {
+	return ((char(__thiscall*)(CVehicleSA*))SAMP_ADDROF(0xB7E70))(this);
+}
+
+void SAMP::CVehicleSA::SetWindowOpenFlag(NUMBER nDoorId) {
+	((void(__thiscall*)(CVehicleSA*, NUMBER))SAMP_ADDROF(0xB7EA0))(this, nDoorId);
+}
+
+void SAMP::CVehicleSA::ClearWindowOpenFlag(NUMBER nDoorId) {
+	((void(__thiscall*)(CVehicleSA*, NUMBER))SAMP_ADDROF(0xB7ED0))(this, nDoorId);
+}
+
+void SAMP::CVehicleSA::EnableEngine(BOOL bEnable) {
+	((void(__thiscall*)(CVehicleSA*, BOOL))SAMP_ADDROF(0xB85A0))(this, bEnable);
+}
+
 #endif

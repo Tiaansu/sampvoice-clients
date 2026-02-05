@@ -69,4 +69,34 @@ void SAMP::CGangZonePool::Draw() {
 	((void(__thiscall*)(CGangZonePool*))SAMP_ADDROF(0x2250))(this);
 }
 
+#elif defined(SAMP_DL)
+
+SAMP::CGangZonePool::CGangZonePool() {
+	((void(__thiscall*)(CGangZonePool*))SAMP_ADDROF(0x2150))(this);
+}
+
+SAMP::CGangZonePool::~CGangZonePool() {
+	((void(__thiscall*)(CGangZonePool*))SAMP_ADDROF(0x2180))(this);
+}
+
+void SAMP::CGangZonePool::Create(ID nId, float left, float top, float right, float bottom, D3DCOLOR color) {
+	((void(__thiscall*)(CGangZonePool*, ID, float, float, float, float, D3DCOLOR))SAMP_ADDROF(0x21B0))(this, nId, left, top, right, bottom, color);
+}
+
+void SAMP::CGangZonePool::StartFlashing(ID nId, D3DCOLOR color) {
+	((void(__thiscall*)(CGangZonePool*, ID, D3DCOLOR))SAMP_ADDROF(0x2230))(this, nId, color);
+}
+
+void SAMP::CGangZonePool::StopFlashing(ID nId) {
+	((void(__thiscall*)(CGangZonePool*, ID))SAMP_ADDROF(0x2250))(this, nId);
+}
+
+void SAMP::CGangZonePool::Delete(ID nId) {
+	((void(__thiscall*)(CGangZonePool*, ID))SAMP_ADDROF(0x2270))(this, nId);
+}
+
+void SAMP::CGangZonePool::Draw() {
+	((void(__thiscall*)(CGangZonePool*))SAMP_ADDROF(0x22A0))(this);
+}
+
 #endif

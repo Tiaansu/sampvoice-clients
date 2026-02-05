@@ -35,4 +35,28 @@ CSrvNetStats*& pServerNetStatistics();
 
 SAMP_END
 
+#elif defined(SAMP_DL)
+
+SAMP_BEGIN
+
+class SAMP_API CSrvNetStats {
+public:
+
+	unsigned long		m_dwLastTotalBytesSent;
+	unsigned long		m_dwLastTotalBytesRecv;
+	unsigned long		m_dwLastUpdateTick;
+	unsigned long		m_dwBPSUpload;
+	unsigned long		m_dwBPSDownload;
+	IDirect3DDevice9*	m_pDevice;
+
+	CSrvNetStats(IDirect3DDevice9* pDevice);
+
+	void Draw();
+
+};
+
+CSrvNetStats*& pServerNetStatistics();
+
+SAMP_END
+
 #endif

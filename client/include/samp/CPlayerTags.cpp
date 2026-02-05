@@ -97,4 +97,48 @@ void SAMP::CPlayerTags::BeginHealthBar() {
 	((void(__thiscall*)(CPlayerTags*))SAMP_ADDROF(0x6CF40))(this);
 }
 
+#elif defined(SAMP_DL)
+
+SAMP::CPlayerTags*& SAMP::pPlayerTags() { return *(SAMP::CPlayerTags**)SAMP_ADDROF(0x2AC9D8); }
+
+SAMP::CPlayerTags::CPlayerTags(IDirect3DDevice9* pDevice) {
+	((void(__thiscall*)(CPlayerTags*, IDirect3DDevice9*))SAMP_ADDROF(0x6C730))(this, pDevice);
+}
+
+SAMP::CPlayerTags::~CPlayerTags() {
+	((void(__thiscall*)(CPlayerTags*))SAMP_ADDROF(0x6C760))(this);
+}
+
+void SAMP::CPlayerTags::EndHealthBar() {
+	((void(__thiscall*)(CPlayerTags*))SAMP_ADDROF(0x6C790))(this);
+}
+
+void SAMP::CPlayerTags::BeginLabel() {
+	((void(__thiscall*)(CPlayerTags*))SAMP_ADDROF(0x6C7C0))(this);
+}
+
+void SAMP::CPlayerTags::EndLabel() {
+	((void(__thiscall*)(CPlayerTags*))SAMP_ADDROF(0x6C7D0))(this);
+}
+
+void SAMP::CPlayerTags::DrawLabel(CVectorSA* pPosition, const char* szText, D3DCOLOR color, float fDistanceToCamera, bool bDrawStatus, int nStatus) {
+	((void(__thiscall*)(CPlayerTags*, CVectorSA*, const char*, D3DCOLOR, float, bool, int))SAMP_ADDROF(0x6C7E0))(this, pPosition, szText, color, fDistanceToCamera, bDrawStatus, nStatus);
+}
+
+void SAMP::CPlayerTags::DrawHealthBar(CVectorSA* pPosition, float fHealth, float fArmour, float fDistanceToCamera) {
+	((void(__thiscall*)(CPlayerTags*, CVectorSA*, float, float, float))SAMP_ADDROF(0x6CAE0))(this, pPosition, fHealth, fArmour, fDistanceToCamera);
+}
+
+void SAMP::CPlayerTags::OnLostDevice() {
+	((void(__thiscall*)(CPlayerTags*))SAMP_ADDROF(0x6D090))(this);
+}
+
+void SAMP::CPlayerTags::OnResetDevice() {
+	((void(__thiscall*)(CPlayerTags*))SAMP_ADDROF(0x6D0C0))(this);
+}
+
+void SAMP::CPlayerTags::BeginHealthBar() {
+	((void(__thiscall*)(CPlayerTags*))SAMP_ADDROF(0x6D0F0))(this);
+}
+
 #endif

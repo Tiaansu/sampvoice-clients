@@ -30,4 +30,23 @@ CHelpDialog*& pHelpDialog();
 
 SAMP_END
 
+#elif defined(SAMP_DL)
+
+SAMP_BEGIN
+
+class SAMP_API CHelpDialog {
+public:
+
+	IDirect3DDevice9 *m_pDevice;
+
+	CHelpDialog(IDirect3DDevice9 *pDevice = SAMP_UNUSED);
+	
+	void Show();
+
+};
+
+CHelpDialog*& pHelpDialog();
+
+SAMP_END
+
 #endif

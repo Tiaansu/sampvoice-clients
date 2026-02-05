@@ -125,10 +125,13 @@ void Network::Free() noexcept
 
 bool Network::SendControlPacket(const WORD packet, const LPCVOID dataAddr, const WORD dataSize) noexcept
 {
-    if (Network::connectionStatus != ConnectionStatus::Connected)
+    if (Network::connectionStatus != ConnectionStatus::Connected) 
+    {
+        Logger::LogToFile("[sv:err:network:sendcontrolpacket] : not connected");
         return false;
+    }
 
-    BitStream bitStream { sizeof(BYTE) + sizeof(ControlPacket) + dataSize };
+    BitStream bitStream(sizeof(BYTE) + sizeof(ControlPacket) + dataSize);
 
     bitStream.Write<BYTE>(kRaknetPacketId);
 
@@ -140,7 +143,9 @@ bool Network::SendControlPacket(const WORD packet, const LPCVOID dataAddr, const
         bitStream.Write(static_cast<PCCH>(dataAddr), dataSize);
     }
 
-    return RakNet::Send(&bitStream);
+    bool ret = RakNet::Send(&bitStream);
+    Logger::LogToFile("[sv:dbg:network:SendControlPacket] : sent %s", ret ? "true" : "false");
+    return ret;
 }
 
 bool Network::SendVoicePacket(const LPCVOID dataAddr, const WORD dataSize) noexcept
@@ -418,19 +423,31 @@ bool Network::OnRaknetRpc(const int id, BitStream& parameters) noexcept
 bool Network::OnRaknetReceive(Packet& packet) noexcept
 {
     if (!Network::initStatus)
+    {
+        Logger::LogToFile("[sv:err:network:serverInfo] : !Network::initStatus");
         return true;
+    }
 
     if (packet.length < sizeof(BYTE) + sizeof(ControlPacket))
+    {
+        Logger::LogToFile("[sv:err:network:serverInfo] : packet.length < sizeof(BYTE) + sizeof(ControlPacket)");
         return true;
+    }
 
+    Logger::LogToFile("[sv:err:network:serverInfo] : *packet.data: %i kRaknetPacketId: %i", *packet.data, kRaknetPacketId);
     if (*packet.data != kRaknetPacketId)
+    {
         return true;
+    }
 
     const auto controlPacketPtr = reinterpret_cast<ControlPacket*>(packet.data + sizeof(BYTE));
     const DWORD controlPacketSize = packet.length - sizeof(BYTE);
 
     if (controlPacketSize != controlPacketPtr->GetFullSize())
+    {
+        Logger::LogToFile("[sv:err:network:serverInfo] : controlPacketSize != controlPacketPtr->GetFullSize()");
         return false;
+    }
 
     switch (controlPacketPtr->packet)
     {
