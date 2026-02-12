@@ -21,6 +21,7 @@
 #include <util/Render.h>
 
 #include "PluginConfig.h"
+#include "PluginMenu.h"
 
 bool SpeakerList::Init(IDirect3DDevice9* const pDevice, const AddressesBase& addrBase,
     const Resource& rSpeakerIcon, const Resource& rSpeakerFont) noexcept
@@ -105,7 +106,7 @@ void SpeakerList::Hide() noexcept
 
 void SpeakerList::Render()
 {
-    if (!SpeakerList::initStatus || !SpeakerList::showStatus)
+    if (!SpeakerList::initStatus || !SpeakerList::showStatus || PluginMenu::IsShowed())
         return;
 
     const auto pNetGame = SAMP::pNetGame();

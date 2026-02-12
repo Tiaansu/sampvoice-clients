@@ -616,6 +616,8 @@ void Plugin::OnRender()
     MicroIcon::Update();
     PluginMenu::Update();
     PluginMenu::Render();
+
+    SpeakerList::Render();
 }
 
 void Plugin::OnAfterReset(IDirect3DDevice9* const pDevice,
@@ -656,7 +658,7 @@ void Plugin::DrawRadarHook()
 {
     static_cast<void(*)()>(Plugin::drawRadarHook->callFuncAddr)();
 
-    SpeakerList::Render();
+    // SpeakerList::Render();
     MicroIcon::Render();
 }
 
