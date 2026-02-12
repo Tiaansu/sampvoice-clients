@@ -479,6 +479,11 @@ void Plugin::ControlPacketHandler(const ControlPacket& controlPacket)
 
             Logger::LogToFile("[sv:dbg:plugin:deletestream] : stream(%p)", stData.stream);
 
+            // Reset the stream
+            const auto& streamPtr = Plugin::streamTable[stData.stream];
+            streamPtr->Reset();
+
+            // Remove the stream from the table
             Plugin::streamTable.erase(stData.stream);
         } break;
         case SV::ControlPacketType::setStreamParameter:
