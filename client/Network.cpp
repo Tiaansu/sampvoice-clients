@@ -422,32 +422,16 @@ bool Network::OnRaknetRpc(const int id, BitStream& parameters) noexcept
 
 bool Network::OnRaknetReceive(Packet& packet) noexcept
 {
-    if (!Network::initStatus)
-    {
-        Logger::LogToFile("[sv:err:network:serverInfo] : !Network::initStatus");
-        return true;
-    }
+    if (!Network::initStatus) return true;
 
-    if (packet.length < sizeof(BYTE) + sizeof(ControlPacket))
-    {
-        Logger::LogToFile("[sv:err:network:serverInfo] : packet.length < sizeof(BYTE) + sizeof(ControlPacket)");
-        return true;
-    }
+    if (packet.length < sizeof(BYTE) + sizeof(ControlPacket)) return true;
 
-    Logger::LogToFile("[sv:err:network:serverInfo] : *packet.data: %i kRaknetPacketId: %i", *packet.data, kRaknetPacketId);
-    if (*packet.data != kRaknetPacketId)
-    {
-        return true;
-    }
+    if (*packet.data != kRaknetPacketId) return true;
 
     const auto controlPacketPtr = reinterpret_cast<ControlPacket*>(packet.data + sizeof(BYTE));
     const DWORD controlPacketSize = packet.length - sizeof(BYTE);
 
-    if (controlPacketSize != controlPacketPtr->GetFullSize())
-    {
-        Logger::LogToFile("[sv:err:network:serverInfo] : controlPacketSize != controlPacketPtr->GetFullSize()");
-        return false;
-    }
+    if (controlPacketSize != controlPacketPtr->GetFullSize()) return false;
 
     switch (controlPacketPtr->packet)
     {
