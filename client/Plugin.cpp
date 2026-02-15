@@ -481,7 +481,10 @@ void Plugin::ControlPacketHandler(const ControlPacket& controlPacket)
 
             // Reset the stream
             const auto& streamPtr = Plugin::streamTable[stData.stream];
-            streamPtr->Reset();
+            if (streamPtr != nullptr)
+            {
+                streamPtr->Reset();
+            }
 
             // Remove the stream from the table
             Plugin::streamTable.erase(stData.stream);
