@@ -662,7 +662,15 @@ void PluginMenu::Render() noexcept
                         {
                             for (WORD playerId { 0 }; playerId < MAX_PLAYERS; ++playerId)
                             {
-                                if (pPlayerPool->IsConnected(playerId) == FALSE)
+                                WORD id = -1;
+                                
+                            #if defined(SAMP_R1) || defined(SAMP_R3)
+                                id = pPlayerPool->m_localInfo.m_nId;
+                            #else
+                                id = pPlayerPool->m_nLocalId;
+                            #endif
+
+                                if (pPlayerPool->IsConnected(playerId) == FALSE || playerId == id)
                                     continue;
 
                                 if (const auto playerName = pPlayerPool->GetName(playerId); playerName != nullptr)
@@ -681,10 +689,8 @@ void PluginMenu::Render() noexcept
                                         }
 
                                         ImGui::SetCursorPos({ oldCurPos.x + 5.f, oldCurPos.y + 1.f });
-                                        if (auto stPlayer = SAMP::pNetGame()->GetPlayerPool()->GetPlayer(playerId))
-                                            ImGui::TextColored(ImGui::ColorConvertU32ToFloat4(htonl(stPlayer->GetColorAsRGBA() |
-                                                0xff000000)), "(%hu) %s", playerId, playerName);
-                                        else ImGui::Text("(%hu) %s", playerId, playerName);
+                                        ImGui::Text("(%hu) %s", playerId, playerName);
+                                        Logger::LogToFile("[sv:dbg:pluginmenu] : playerName=%s (%hu)", playerName, playerId);
                                         ImGui::PopID();
                                     }
                                 }
@@ -744,6 +750,7 @@ void PluginMenu::Render() noexcept
                         {
                             // Remove player from black list
                             BlackList::UnlockPlayer(playerInfo.playerName);
+                            break;
                         }
 
                         ImGui::PopID();
@@ -752,10 +759,7 @@ void PluginMenu::Render() noexcept
 
                         if (playerInfo.playerId != SV::kNonePlayer)
                         {
-                            if (auto stPlayer = SAMP::pNetGame()->GetPlayerPool()->GetPlayer(playerInfo.playerId))
-                                ImGui::TextColored(ImGui::ColorConvertU32ToFloat4(htonl(stPlayer->GetColorAsRGBA())),
-                                    "%s (%hu)", playerInfo.playerName.c_str(), playerInfo.playerId);
-                            else ImGui::Text("%s (%hu)", playerInfo.playerName.c_str(), playerInfo.playerId);
+                            ImGui::Text("(%hu) %s", playerInfo.playerId, playerInfo.playerName.c_str());
                         }
                         else ImGui::TextDisabled("%s", playerInfo.playerName.c_str());
 
