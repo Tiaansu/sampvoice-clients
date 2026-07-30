@@ -690,7 +690,6 @@ void PluginMenu::Render() noexcept
 
                                         ImGui::SetCursorPos({ oldCurPos.x + 5.f, oldCurPos.y + 1.f });
                                         ImGui::Text("(%hu) %s", playerId, playerName);
-                                        Logger::LogToFile("[sv:dbg:pluginmenu] : playerName=%s (%hu)", playerName, playerId);
                                         ImGui::PopID();
                                     }
                                 }

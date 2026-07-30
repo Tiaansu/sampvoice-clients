@@ -34,7 +34,6 @@ struct StreamInfo {
 public:
 
     StreamInfo(StreamType type, D3DCOLOR color, std::string name) noexcept;
-    StreamInfo(StreamType type, D3DCOLOR color, std::string name, float distance) noexcept;
 
     ~StreamInfo() noexcept = default;
 
@@ -50,6 +49,4 @@ private:
     StreamType type { StreamType::None };
     D3DCOLOR color { -1u };
     std::string name;
-
-    float distance { -1.0f };
 };
