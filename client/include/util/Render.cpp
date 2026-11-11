@@ -13,6 +13,7 @@
 
 #pragma comment(lib, "d3d9.lib")
 #pragma comment(lib, "d3dx9.lib")
+#pragma comment(lib, "dxguid.lib")
 
 namespace
 {
@@ -354,14 +355,17 @@ void Render::RemoveDeviceFreeCallback(const std::size_t callback) noexcept
 
 // --------------------------------------------------------------------------------------------------
 
-Render::IDirect3DDevice9Hook::IDirect3DDevice9Hook(IDirect3DDevice9* const pOrigInterface) noexcept
-    : pOrigInterface(pOrigInterface)
+Render::IDirect3DDevice9Hook::IDirect3DDevice9Hook(IDirect3DDevice9* const pOrigInterface, 
+    IDirect3D9Hook* const pParent) noexcept
+    : pOrigInterface(pOrigInterface), pParent(pParent)
 {
     this->pOrigInterface->AddRef();
+    this->pParent->AddRef();
 }
 
 Render::IDirect3DDevice9Hook::~IDirect3DDevice9Hook() noexcept
 {
+    this->pParent->Release();
     this->pOrigInterface->Release();
 }
 
@@ -381,42 +385,49 @@ HRESULT __stdcall Render::IDirect3DDevice9Hook::Present(CONST RECT* const pSourc
 
 HRESULT __stdcall Render::IDirect3DDevice9Hook::QueryInterface(REFIID riid, VOID** const ppvObj) noexcept
 {
+    if (ppvObj == nullptr)
+        return E_POINTER;
+
     *ppvObj = nullptr;
 
-    const auto hResult = this->pOrigInterface->QueryInterface(riid, ppvObj);
+    if (riid == IID_IUnknown || riid == IID_IDirect3DDevice9)
+    {
+        *ppvObj = static_cast<IDirect3DDevice9*>(this);
+        AddRef();
+        return S_OK;
+    }
 
-    if (SUCCEEDED(hResult)) *ppvObj = this;
-
-    return hResult;
+    return pOrigInterface->QueryInterface(riid, ppvObj);
 }
 
 ULONG __stdcall Render::IDirect3DDevice9Hook::AddRef() noexcept
 {
-    return this->pOrigInterface->AddRef();
+    return refCount.fetch_add(1, std::memory_order_relaxed) + 1;
 }
 
 ULONG __stdcall Render::IDirect3DDevice9Hook::Release() noexcept
 {
-    const auto count = this->pOrigInterface->Release();
+    const ULONG count =
+        refCount.fetch_sub(1, std::memory_order_acq_rel) - 1;
 
-    if (count <= 1)
+    if (count == 0)
     {
-        if (this->pOrigInterface == Render::pDeviceInterface)
+        if (pOrigInterface == Render::pDeviceInterface)
         {
-            for (const auto& deviceFreeCallback : Render::deviceFreeCallbacks)
+            for (const auto& callback : Render::deviceFreeCallbacks)
             {
-                if (deviceFreeCallback != nullptr) deviceFreeCallback();
+                if (callback)
+                    callback();
             }
 
-            Render::deviceMutex.lock();
+            std::lock_guard<std::mutex> lock(Render::deviceMutex);
+
             Render::pDirectInterface = nullptr;
             Render::pDeviceInterface = nullptr;
             Render::deviceParameters = {};
-            Render::deviceMutex.unlock();
         }
 
         delete this;
-        return 0;
     }
 
     return count;
@@ -439,7 +450,13 @@ HRESULT __stdcall Render::IDirect3DDevice9Hook::EvictManagedResources() noexcept
 
 HRESULT __stdcall Render::IDirect3DDevice9Hook::GetDirect3D(IDirect3D9** const ppD3D9) noexcept
 {
-    return this->pOrigInterface->GetDirect3D(ppD3D9);
+    if (ppD3D9 == nullptr)
+        return D3DERR_INVALIDCALL;
+
+    *ppD3D9 = this->pParent;
+    this->pParent->AddRef();
+
+    return D3D_OK;
 }
 
 HRESULT __stdcall Render::IDirect3DDevice9Hook::GetDeviceCaps(D3DCAPS9* const pCaps) noexcept
@@ -491,36 +508,47 @@ UINT __stdcall Render::IDirect3DDevice9Hook::GetNumberOfSwapChains() noexcept
 
 HRESULT __stdcall Render::IDirect3DDevice9Hook::Reset(D3DPRESENT_PARAMETERS* const pPresentationParameters) noexcept
 {
-    if (this->pOrigInterface == Render::pDeviceInterface && !this->resetStatus)
+    const bool isGameDevice =
+        pOrigInterface == Render::pDeviceInterface;
+
+    if (!isGameDevice)
+        return pOrigInterface->Reset(pPresentationParameters);
+
+    if (resetStatus)
+        return D3DERR_INVALIDCALL;
+
+    resetStatus = true;
+
+    for (const auto& callback : Render::beforeResetCallbacks)
     {
-        for (const auto& beforeResetCallback : Render::beforeResetCallbacks)
-        {
-            if (beforeResetCallback != nullptr) beforeResetCallback();
-        }
+        if (callback)
+            callback();
     }
 
-    this->resetStatus = true;
+    const HRESULT hr = pOrigInterface->Reset(pPresentationParameters);
 
-    const auto hResult = this->pOrigInterface->Reset(pPresentationParameters);
-
-    if (this->pOrigInterface == Render::pDeviceInterface && SUCCEEDED(hResult))
+    if (SUCCEEDED(hr) && pPresentationParameters)
     {
-        Render::deviceMutex.lock();
-        Render::deviceParameters = *pPresentationParameters;
-        Render::deviceMutex.unlock();
-
-        if (this->resetStatus)
         {
-            for (const auto& afterResetCallback : Render::afterResetCallbacks)
+            std::lock_guard<std::mutex> lock(Render::deviceMutex);
+            Render::deviceParameters = *pPresentationParameters;
+        }
+
+        for (const auto& callback : Render::afterResetCallbacks)
+        {
+            if (callback)
             {
-                if (afterResetCallback != nullptr) afterResetCallback(Render::pDeviceInterface, Render::deviceParameters);
+                callback(
+                    Render::pDeviceInterface,
+                    Render::deviceParameters
+                );
             }
         }
-
-        this->resetStatus = false;
     }
 
-    return hResult;
+    resetStatus = false;
+
+    return hr;
 }
 
 HRESULT __stdcall Render::IDirect3DDevice9Hook::GetBackBuffer(const UINT iSwapChain, const UINT iBackBuffer,
@@ -1131,29 +1159,33 @@ Render::IDirect3D9Hook::~IDirect3D9Hook() noexcept
 
 HRESULT __stdcall Render::IDirect3D9Hook::QueryInterface(REFIID riid, VOID** const ppvObj) noexcept
 {
+    if (ppvObj == nullptr)
+        return E_POINTER;
+
     *ppvObj = nullptr;
 
-    const auto hResult = this->pOrigInterface->QueryInterface(riid, ppvObj);
+    if (riid == IID_IUnknown || riid == IID_IDirect3D9)
+    {
+        *ppvObj = static_cast<IDirect3D9*>(this);
+        AddRef();
+        return S_OK;
+    }
 
-    if (SUCCEEDED(hResult)) *ppvObj = this;
-
-    return hResult;
+    return pOrigInterface->QueryInterface(riid, ppvObj);
 }
 
 ULONG __stdcall Render::IDirect3D9Hook::AddRef() noexcept
 {
-    return this->pOrigInterface->AddRef();
+    return refCount.fetch_add(1, std::memory_order_relaxed) + 1;
 }
 
 ULONG __stdcall Render::IDirect3D9Hook::Release() noexcept
 {
-    const auto count = this->pOrigInterface->Release();
+    const ULONG count =
+        refCount.fetch_sub(1, std::memory_order_acq_rel) - 1;
 
-    if (count <= 1)
-    {
+    if (count == 0)
         delete this;
-        return 0;
-    }
 
     return count;
 }
@@ -1252,37 +1284,52 @@ HRESULT __stdcall Render::IDirect3D9Hook::CreateDevice(const UINT Adapter, const
         *ppReturnedDeviceInterface, hFocusWindow, pPresentationParameters->Windowed,
         pPresentationParameters->BackBufferWidth, pPresentationParameters->BackBufferHeight);
 
-    const auto pHookDevice = new (std::nothrow) IDirect3DDevice9Hook(*ppReturnedDeviceInterface);
+    auto* const pOrigDevice = *ppReturnedDeviceInterface;
+    auto* const pHookDevice =
+        new (std::nothrow) IDirect3DDevice9Hook(pOrigDevice, this);
 
     if (pHookDevice == nullptr)
     {
-        Logger::LogToFile("[err:render:direct] : failed to allocate memory for hook interface");
+        Logger::LogToFile(
+            "[err:render:direct] : failed to allocate memory for hook interface"
+        );
+
         return hResult;
     }
 
-    Logger::LogToFile("[dbg:render:direct] : pointer successfully replaced from orig (ptr:%p) to hook (ptr:%p)",
-        *ppReturnedDeviceInterface, pHookDevice);
+    // Transfer the original CreateDevice reference to the proxy.
+    pOrigDevice->Release();
 
     if (Render::pDirectInterface != nullptr)
     {
         for (const auto& deviceFreeCallback : Render::deviceFreeCallbacks)
         {
-            if (deviceFreeCallback != nullptr) deviceFreeCallback();
+            if (deviceFreeCallback != nullptr)
+                deviceFreeCallback();
         }
     }
 
-    Render::deviceMutex.lock();
-    Render::pDirectInterface = this->pOrigInterface;
-    Render::pDeviceInterface = *ppReturnedDeviceInterface;
-    Render::deviceParameters = *pPresentationParameters;
-    Render::deviceMutex.unlock();
+    {
+        std::lock_guard<std::mutex> lock(Render::deviceMutex);
+
+        Render::pDirectInterface = this->pOrigInterface;
+        Render::pDeviceInterface = pOrigDevice;
+        Render::deviceParameters = *pPresentationParameters;
+    }
 
     for (const auto& deviceInitCallback : Render::deviceInitCallbacks)
     {
-        if (deviceInitCallback != nullptr) deviceInitCallback(Render::pDirectInterface,
-            Render::pDeviceInterface, Render::deviceParameters);
+        if (deviceInitCallback != nullptr)
+        {
+            deviceInitCallback(
+                Render::pDirectInterface,
+                pOrigDevice,
+                Render::deviceParameters
+            );
+        }
     }
 
+    // Give GTA the proxy.
     *ppReturnedDeviceInterface = pHookDevice;
 
     return hResult;
@@ -1293,24 +1340,34 @@ HRESULT __stdcall Render::IDirect3D9Hook::CreateDevice(const UINT Adapter, const
 IDirect3D9* CALLBACK Render::HookDirect3DCreate9(const UINT SDKVersion) noexcept
 {
     Render::hookDirect3DCreate9->Disable();
-    auto pOrigDirect = GameDirect3DCreate9(SDKVersion);
+
+    auto* const pOrigDirect = GameDirect3DCreate9(SDKVersion);
+
     Render::hookDirect3DCreate9->Enable();
 
-    if (pOrigDirect != nullptr)
-    {
-        Logger::LogToFile("[dbg:render:hookdirect3dcreate9] : intercepted instance "
-            "(ptr:%p) of IDirect3D9", pOrigDirect);
+    Logger::LogToFile(
+        "[dbg:render] Direct3DCreate9 intercepted: original=%p",
+        pOrigDirect
+    );
 
-        if (const auto pHookDirect = new (std::nothrow) IDirect3D9Hook(pOrigDirect); pHookDirect != nullptr)
-        {
-            Logger::LogToFile("[dbg:render:hookdirect3dcreate9] : pointer successfully "
-                "replaced from orig (ptr:%p) to hook (ptr:%p)", pOrigDirect, pHookDirect);
+    if (pOrigDirect == nullptr)
+        return nullptr;
 
-            pOrigDirect = pHookDirect;
-        }
-    }
+    auto* const pHookDirect =
+        new (std::nothrow) IDirect3D9Hook(pOrigDirect);
 
-    return pOrigDirect;
+    if (pHookDirect == nullptr)
+        return pOrigDirect;
+
+    // Transfer the original factory reference to the proxy.
+    pOrigDirect->Release();
+
+    Logger::LogToFile(
+        "[dbg:render] Direct3D9 proxy created: proxy=%p",
+        pHookDirect
+    );
+
+    return pHookDirect;
 }
 
 bool Render::initStatus { false };

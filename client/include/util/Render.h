@@ -9,6 +9,7 @@
 
 #pragma once
 
+#include <atomic>
 #include <cstdint>
 #include <functional>
 #include <mutex>
@@ -75,6 +76,8 @@ public:
 
 private:
 
+class IDirect3D9Hook;
+
     interface IDirect3DDevice9Hook : public IDirect3DDevice9 {
 
         IDirect3DDevice9Hook() = delete;
@@ -85,7 +88,7 @@ private:
 
     public:
 
-        explicit IDirect3DDevice9Hook(IDirect3DDevice9* pOrigInterface) noexcept;
+        explicit IDirect3DDevice9Hook(IDirect3DDevice9* pOrigInterface, IDirect3D9Hook* const pParent) noexcept;
 
         ~IDirect3DDevice9Hook() noexcept;
 
@@ -214,6 +217,8 @@ private:
     private:
 
         IDirect3DDevice9* const pOrigInterface;
+        IDirect3D9Hook* const pParent;
+        std::atomic<ULONG> refCount{1};
 
         bool resetStatus { false };
         bool sceneStatus { false };
@@ -257,6 +262,7 @@ private:
     private:
 
         IDirect3D9* const pOrigInterface;
+        std::atomic<ULONG> refCount{1};
 
     };
 
