@@ -2,11 +2,6 @@ project(sampvoice-client)
 
 set(CMAKE_CXX_STANDARD 17)
 
-if(MSVC)
-    add_compile_options(/Zi)
-    add_link_options(/DEBUG)
-endif()
-
 set(SAMP_VERSION "R1" CACHE STRING "SAMP version to compile for")
 set_property(CACHE SAMP_VERSION PROPERTY STRINGS "R1" "R3" "DL")
 
